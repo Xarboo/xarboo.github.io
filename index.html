@@ -1,77 +1,121 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moja Strona</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gitary Ibanez</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #f2f2f2;
+            background-color: #f9f9f9;
+            color: #333;
         }
-
         header {
-            background-color: #007BFF;
+            background-color: #1e2a38;
             color: white;
             padding: 20px;
             text-align: center;
         }
-
         nav {
-            background-color: #333;
-            overflow: hidden;
-        }
-
-        nav a {
-            float: left;
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 20px;
-            text-decoration: none;
-        }
-
-        nav a:hover {
-            background-color: #575757;
-        }
-
-        main {
-            padding: 20px;
-        }
-
-        footer {
-            background-color: #007BFF;
-            color: white;
-            text-align: center;
+            background-color: #0d1a26;
             padding: 10px;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
         }
-
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #ff6600;
+        }
+        main {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+        h1, h2 {
+            color: #1e2a38;
+        }
+        section {
+            margin-bottom: 30px;
+            background: white;
+            padding: 15px 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            border-radius: 6px;
+        }
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        footer {
+            background-color: #1e2a38;
+            color: white;
+            text-align: center;
+            padding: 15px 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Witamy na mojej stronie!</h1>
+    <h1>Gitary Ibanez</h1>
+    <p>Odkryj świat gitar Ibanez - legendarnych instrumentów dla muzyków</p>
 </header>
 
 <nav>
-    <a href="#">Strona Główna</a>
-    <a href="#">O mnie</a>
-    <a href="#">Kontakt</a>
+    <a href="#historia">Historia</a>
+    <a href="#modele">Popularne modele</a>
+    <a href="#kontakt">Kontakt</a>
 </nav>
 
 <main>
-    <h2>Strona początkowa</h2>
-    <p>To jest przykładowa strona startowa napisana w HTML z użyciem CSS.</p>
+    <section id="historia">
+        <h2>Historia marki Ibanez</h2>
+        <p>Ibanez to japońska firma założona w 1957 roku, znana z produkcji wysokiej jakości gitar elektrycznych, basowych oraz akustycznych. Marka zdobyła uznanie na całym świecie dzięki innowacyjnym rozwiązaniom, świetnemu brzmieniu i wyjątkowej estetyce.</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Ibanez_logo.svg/1200px-Ibanez_logo.svg.png" alt="Logo Ibanez" />
+    </section>
+
+    <section id="modele">
+        <h2>Popularne modele gitar Ibanez</h2>
+        <ul>
+            <li><strong>Ibanez RG Series</strong> – gitara elektryczna popularna wśród gitarzystów rockowych i metalowych, znana z szybkiego gryfu i agresywnego brzmienia.</li>
+            <li><strong>Ibanez S Series</strong> – smukła, lekka gitara elektryczna o ergonomicznym kształcie.</li>
+            <li><strong>Ibanez Artcore Series</strong> – gitara półakustyczna, idealna dla miłośników jazzu i bluesa.</li>
+            <li><strong>Ibanez Talman</strong> – gitara o klasycznym wyglądzie, łącząca styl vintage z nowoczesnym brzmieniem.</li>
+        </ul>
+        <img src="https://www.ibanez.com/common/product_img/rg/rg550_03.jpg" alt="Gitara Ibanez RG" />
+    </section>
+
+    <section id="kontakt">
+        <h2>Kontakt</h2>
+        <p>Masz pytania dotyczące gitar Ibanez? Napisz do nas!</p>
+        <form>
+            <label for="name">Imię:</label><br/>
+            <input type="text" id="name" name="name" placeholder="Twoje imię" required/><br/><br/>
+            
+            <label for="email">Email:</label><br/>
+            <input type="email" id="email" name="email" placeholder="Twój email" required/><br/><br/>
+            
+            <label for="message">Wiadomość:</label><br/>
+            <textarea id="message" name="message" rows="5" placeholder="Twoja wiadomość..." required></textarea><br/><br/>
+            
+            <button type="submit">Wyślij</button>
+        </form>
+    </section>
 </main>
 
 <footer>
-    <p>&copy; 2025 Moja Strona. Wszelkie prawa zastrzeżone.</p>
+    &copy; 2025 Strona o gitarach Ibanez. Wszystkie prawa zastrzeżone.
 </footer>
 
 </body>
