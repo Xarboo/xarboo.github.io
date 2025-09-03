@@ -3,36 +3,21 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Gitary Ibanez</title>
+    <title>Xar to koks</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            background-color: #f9f9f9;
-            color: #333;
+            padding: 0;
+            background-image: url(img/bg.jpg);
+            
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            background-color: hsla(0%, 50%,75%, 70%);
         }
-        header {
-            background-color: #1e2a38;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        nav {
-            background-color: #0d1a26;
-            padding: 10px;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-        nav a:hover {
-            color: #ff6600;
-        }
+
         main {
             max-width: 900px;
             margin: 20px auto;
@@ -48,64 +33,44 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.1);
             border-radius: 6px;
         }
-        img {
-            max-width: 100%;
-            border-radius: 8px;
-            margin-top: 10px;
-        }
-        footer {
-            background-color: #1e2a38;
-            color: white;
-            text-align: center;
-            padding: 15px 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            font-size: 14px;
-        }
+    .center-div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; 
+    }
+
+    .menu {
+      text-align: center;
+      background-color: hsla(310, 100%, 21%, 0.7);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(172, 0, 134, 0.4);
+    }
+
+    .menu a {
+      display: block;
+      margin: 10px 0;
+      text-decoration: none;
+      color: #00ff40;
+      font-size: 18px;
+      transition: color 0.3s;
+    }
+
+    .menu a:hover {
+      color: #007bff;
+    }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Gitary Ibanez</h1>
-    <p>Odkryj świat gitar Ibanez - legendarnych instrumentów dla muzyków</p>
-</header>
-
-<nav>
-    <a href="#historia">Historia</a>
-    <a href="#modele">Popularne modele</a>
-    <a href="#kalk">Kalkulator</a>
-</nav>
-
-<main>
-    <section id="historia">
-        <h2>Historia marki Ibanez</h2>
-        <p>Ibanez to japońska firma założona w 1957 roku, znana z produkcji wysokiej jakości gitar elektrycznych, basowych oraz akustycznych. Marka zdobyła uznanie na całym świecie dzięki innowacyjnym rozwiązaniom, świetnemu brzmieniu i wyjątkowej estetyce.</p>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Ibanez_logo.svg/1200px-Ibanez_logo.svg.png" alt="Logo Ibanez" />
-    </section>
-
-    <section id="modele">
-        <h2>Popularne modele gitar Ibanez</h2>
-        <ul>
-            <li><strong>Ibanez RG Series</strong> – gitara elektryczna popularna wśród gitarzystów rockowych i metalowych, znana z szybkiego gryfu i agresywnego brzmienia.</li>
-            <li><strong>Ibanez S Series</strong> – smukła, lekka gitara elektryczna o ergonomicznym kształcie.</li>
-            <li><strong>Ibanez Artcore Series</strong> – gitara półakustyczna, idealna dla miłośników jazzu i bluesa.</li>
-            <li><strong>Ibanez Talman</strong> – gitara o klasycznym wyglądzie, łącząca styl vintage z nowoczesnym brzmieniem.</li>
-        </ul>
-        <img src="https://www.ibanez.com/common/product_img/rg/rg550_03.jpg" alt="Gitara Ibanez RG" />
-    </section>
-    <section id="kalk">
-        <div class-"calc">
-            <input type="text">
-        </div>
-    </section>
-
-</main>
-
-<footer>
-    &copy; 2025 Strona o gitarach Ibanez. Wszystkie prawa zastrzeżone.
-</footer>
+  <div class="center-div">
+    <div class="menu">
+      <a href="podstrona1.html">Podstrona 1</a>
+      <a href="podstrona2.html">Podstrona 2</a>
+      <a href="kontakt.html">Kontakt</a>
+    </div>
+  </div>
 
 </body>
 </html>
