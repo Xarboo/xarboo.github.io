@@ -2,69 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark Themed Page</title>
+    <title>Dark Theme Page</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #121212;
+            background: #121212;
             color: #e0e0e0;
+            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
-
-        header {
-            background-color: #1e1e1e;
-            padding: 20px;
+        header, footer {
+            background: #1e1e1e;
             text-align: center;
+            padding: 16px 0;
         }
-
-        h1 {
-            color: #f1f1f1;
-            font-size: 2.5em;
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
-
-        p {
-            font-size: 1.2em;
-            margin: 20px 0;
-        }
-
-        .btn {
-            background-color: #6200ea;
-            color: white;
-            padding: 12px 20px;
+        button {
+            background: #6200ea;
+            color: #fff;
             border: none;
-            border-radius: 5px;
-            font-size: 1.1em;
+            border-radius: 4px;
+            padding: 10px 18px;
+            font-size: 1em;
             cursor: pointer;
+            margin-top: 20px;
         }
-
-        .btn:hover {
-            background-color: #3700b3;
-        }
-
-        footer {
-            background-color: #1e1e1e;
-            text-align: center;
-            padding: 15px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+        button:hover {
+            background: #3700b3;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Welcome to My Dark Themed Page</h1>
+        <h1>Dark Theme Page</h1>
     </header>
-
     <main>
-        <p>This is a simple example of a dark-themed HTML page. Enjoy the smooth contrast and readability.</p>
-        <button class="btn">Click Me</button>
+        <p>This is a simple dark-themed HTML page.</p>
+        <button>Click Me</button>
     </main>
-
     <footer>
-        <p>&copy; 2025 Dark Theme Project</p>
+        &copy; 2025 Dark Theme
     </footer>
 </body>
 </html>
