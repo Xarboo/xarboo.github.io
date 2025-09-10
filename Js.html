@@ -35,7 +35,7 @@
             cursor: pointer;
             margin-top: 20px;
         }
-        .bt {
+        .btn {
             background: #005a17;
             color: #fff;
             border: none;
@@ -67,18 +67,8 @@
       font-size: 18px;
       background: #f7f7f7;
     }
-            .my-btn {
-      padding: 10px 20px;
-      margin: 10px;
-      font-size: 18px;
-      background-color: #1976d2;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background 0.2s;
     }
-    .my-btn:hover {
+    .btn:hover {
       background-color: #1565c0;
     }
     </style>
@@ -120,19 +110,19 @@ document.getElementById('textBtn').addEventListener('click', function() {
   </script>
         <button onclick="goToMainPage()" style="position: fixed; bottom:10px; left: 20px; z-index: 1000;" id="back">Powrót</button>
         <div class="box">
-            <button id="clbt" class="bt">Console.log</button><br>
+            <button id="clbt" class="btn">Console.log</button><br>
             <p>Na kliknięcie przycisku wyświetla się w console.log</p>
         </div>
         <br>
     <div class="box">
-            <button onclick="writeToDocument()" class="bt">document.write</button>
+            <button onclick="writeToDocument()" class="btn">document.write</button>
             <p>Przycisk do document.write</p>
         </div>
-    <div class="box"><button class="my-btn" id="alertBtn">window.alert()</button>
+    <div class="box"><button class="btn" id="alertBtn">window.alert()</button>
         </div>
-    <div class="box"> <button class="my-btn" id="htmlBtn">inner.html()</button>
+    <div class="box"> <button class="btn" id="htmlBtn">inner.html()</button>
         </div>
-    <div class="box"> <button class="my-btn" id="textBtn">inner.text()</button>
+    <div class="box"> <button class="btn" id="textBtn">inner.text()</button>
         </div>
 
   <div id="output">Tutaj pojawi się wynik działania innerHTML lub innerText.</div>
