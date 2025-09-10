@@ -1,122 +1,111 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Xar</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <style>
-        body {
-            font-family: "Kode Mono", monospace;
-            font-optical-sizing: auto;
-            font-weight: 30px;
-            font-style: normal;
-            margin: 0;
+        body{
+            
+            width: 1200px;
+            background: #eae08a;
+            font-family: 'Montserrat', Arial, sans-serif;
+            margin:auto;
             padding: 0;
-            background: linear-gradient(-32deg, #590d22,  #800f2f, #a4133c, #c9184a, #ff4d6d, #ff758f, #ff8fa3, #ffb3c1, #fff0f3);
-            background-size: 400% 400%;
-            animation: gradientBG 12s ease infinite; 
         }
-    @keyframes gradientBG {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
+        nav{
+            background-color: pink;
+            padding: 10px;
+            text-align: left;
+            text-transform: capitalize;
         }
-      
-    
-    main {
-            max-width: 900px;
-            margin: 20px auto;
-            padding: 0 15px;
+        header{
+            text-align: center;
+            background-color: rgb(168, 168, 168);
+            padding: 20px 0 10px 0;
         }
-        section {
-            margin-bottom: 30px;
-            background: white;
-            padding: 15px 20px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-            border-radius: 6px;
+        section{
+            
+            width: 900px;
+            float: right;
+            background-color: rgb(255, 165, 76);
         }
-    .center-div {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh; 
+        aside{
+            float: left;
+            width: 300px;
+        }
+       footer {
+            background: #b8cbe9;
+            padding: 20px 0 10px 0;
+            position: relative;
+            width: 1200px;
+            height: auto;
+            clear: both;
+        }
+
+        footer a {
+            color: #0000ee;
+            text-decoration: underline;
+            font-size: 16px;
+            margin-right: 5px;
     }
-
-    .menu {
-      text-align: center;
-      background-color: hsla(177, 100%, 50%, 0.745);
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 10px 100px hsla(192, 100%, 71%, 0.67);
+    ul, li{
+        text-align: left;
     }
-
-    .menu a {
-      display: block;
-      margin: 10px 0;
-      text-transform: capitalize;
-      text-decoration: none;
-      color: #460000;
-      font-size: 25px;
-      transition: color 0.3s;
+    #imie{
+        text-align: center;
     }
-
-    .menu a:hover {
-      color: #ff4c4c;
-    }
-    .social-nav {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  display: flex;
-  gap: 10px;
-}
-
-.social-nav a {
-  color: #000000;
-  font-size: 1.5em;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.social-nav a:hover {
-  color: #00ff2a; /* Twitter blue, change as you like */
-}
-</style>
+    </style>
 </head>
-
-
 <body>
-    <nav class="social-nav">
-        <a href="https://twitter.com/yourprofile" target="_blank" title="Twitter">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M22.46 5.98c-.77.34-1.6.57-2.47.67a4.3 4.3 0 0 0 1.89-2.37 8.59 8.59 0 0 1-2.72 1.04 4.28 4.28 0 0 0-7.3 3.9A12.14 12.14 0 0 1 3.1 4.93a4.28 4.28 0 0 0 1.33 5.71c-.7-.02-1.35-.21-1.92-.53v.05a4.28 4.28 0 0 0 3.44 4.19c-.33.09-.68.14-1.04.14-.25 0-.5-.02-.73-.07a4.28 4.28 0 0 0 3.99 2.97A8.6 8.6 0 0 1 2 19.54a12.13 12.13 0 0 0 6.56 1.92c7.88 0 12.2-6.53 12.2-12.2 0-.18-.01-.36-.02-.54a8.82 8.82 0 0 0 2.17-2.24z"/>
-              </svg><i class="fab fa-twitter"></i>
-            </a>
-        <a href="https://facebook.com/yourprofile" target="_blank" title="Facebook">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M22.68 0H1.32C.59 0 0 .6 0 1.33v21.33C0 23.4.59 24 1.32 24h11.5v-9.33H9.69V11h3.13V8.41c0-3.1 1.89-4.79 4.65-4.79 1.32 0 2.45.1 2.78.14v3.22h-1.91c-1.5 0-1.79.72-1.79 1.76V11h3.58l-.47 3.67h-3.11V24h6.09c.73 0 1.32-.6 1.32-1.34V1.33C24 .6 23.41 0 22.68 0"/>
-              </svg>
-              <i class="fab fa-facebook">
-              </i>
-            </a>
-        <a href="https://instagram.com/yourprofile" target="_blank" title="Instagram">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2.16c3.2 0 3.584.012 4.85.07 1.17.056 1.97.24 2.42.41.59.22 1.02.48 1.47.93.45.45.71.88.93 1.47.17.45.354 1.25.41 2.42.058 1.27.07 1.65.07 4.85s-.012 3.584-.07 4.85c-.056 1.17-.24 1.97-.41 2.42-.22.59-.48 1.02-.93 1.47-.45.45-.88.71-1.47.93-.45.17-1.25.354-2.42.41-1.27.058-1.65.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.056-1.97-.24-2.42-.41-.59-.22-1.02-.48-1.47-.93-.45-.45-.71-.88-.93-1.47-.17-.45-.354-1.25-.41-2.42C2.172 15.634 2.16 15.246 2.16 12s.012-3.584.07-4.85c.056-1.17.24-1.97.41-2.42.22-.59.48-1.02.93-1.47.45-.45.88-.71 1.47-.93.45-.17 1.25-.354 2.42-.41C8.416 2.172 8.8 2.16 12 2.16zm0-2.16C8.736 0 8.332.012 7.052.07 5.77.128 4.774.31 3.99.57c-.8.27-1.48.64-2.16 1.32-.68.68-1.05 1.36-1.32 2.16-.26.78-.44 1.78-.5 3.06C.014 8.32 0 8.736 0 12c0 3.264.012 3.668.07 4.948.058 1.28.24 2.28.5 3.06.27.8.64 1.48 1.32 2.16.68.68 1.36 1.05 2.16 1.32.78.26 1.78.44 3.06.5 1.28.058 1.684.07 4.948.07s3.668-.012 4.948-.07c1.28-.058 2.28-.24 3.06-.5.8-.27 1.48-.64 2.16-1.32.68-.68 1.05-1.36 1.32-2.16.26-.78.44-1.78.5-3.06.058-1.28.07-1.684.07-4.948s-.012-3.668-.07-4.948c-.058-1.28-.24-2.28-.5-3.06-.27-.8-.64-1.48-1.32-2.16-.68-.68-1.36-1.05-2.16-1.32-.78-.26-1.78-.44-3.06-.5C15.668.014 15.264 0 12 0zm0 5.838A6.162 6.162 0 1 0 18.162 12 6.163 6.163 0 0 0 12 5.838zm0 10.162A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm6.406-10.845a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44z"/>
-              </svg>
-              <i class="fab fa-instagram">
-              </i>
-            </a>
+    <header>
+        <h1>
+            Znaczki HTML5
+        </h1>
+    </header>
+    <nav>
+        <p>menu</p>
+        <a href="google.com">Link do google</a>
     </nav>
-  <div class="center-div">
-    <div class="menu">
-      <a href="Js.html" >Wyświetlanie tekstu</a>
-      <a href="podstrona2.html">Strona DOS</a>
-      <a href="kontakt.html">Strona TRES</a>
-    </div>
-  </div>
-
+    <aside>
+        <img src="img/bee.png" alt="motyl" style="width: 250px; height: 250px;">
+    </aside>
+    <section>
+        <article>
+            <h2>Punktowanie i numerowanie</h2>
+                <ul>
+                    <li>Punkt</li>
+                    <li>Punkt</li>
+                    <li>Punkt</li>
+                    <li>Punkt</li>
+                </ul>
+                <ol>
+                <li>Coffee</li>
+                <li>Tea
+                    <ul>
+                    <li>z sokiem</li>
+                    <li>bez cukru</li>
+                    <li>z cukrem</li>
+                    </ul>
+                </li>
+                    <li>Milk</li>
+                </ol>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer non dictum mauris, quis elementum lacus. Phasellus et tortor eget magna ultrices tristique. Curabitur enim ligula, tincidunt eget varius tristique, mollis sed arcu. Ut purus dolor, ultricies id rhoncus sodales, efficitur ac quam.</p>
+        </article>
+        <div>
+            <figure>
+                <img src="img/hot_dog.png" alt="hotdog" style="width: 70px; height: 150px;  margin-bottom: 10px;" title="hotdog">
+                    <figcaption>Hot-dog</figcaption>
+            </figure>
+            <figure>
+                <img src="img/karda.png" alt="karda" style="width: 200px; height: 200px; margin-bottom: 10px;" title="karda">
+                    <figcaption>Kadra</figcaption>
+            </figure>
+        </div>
+    </section>
+    <footer>
+      <div id="imie"><strong>Bercik</strong></div>
+      <a href="mailto:test@example.com">napisz do mnie</a> <a href="tel:+4733378901">+47 333 78 901</a>
+    </footer>
 </body>
 </html>
