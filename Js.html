@@ -59,6 +59,28 @@
         button:hover {
             background: #3700b3;
         }
+            #output {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      min-height: 40px;
+      font-size: 18px;
+      background: #f7f7f7;
+    }
+            .my-btn {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 18px;
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .my-btn:hover {
+      background-color: #1565c0;
+    }
     </style>
 
     <script>
@@ -89,11 +111,20 @@
             <p>Na kliknięcie przycisku wyświetla się w console.log</p>
         </div>
         <br>
-        <div class="box">
+    <div class="box">
             <button onclick="writeToDocument()" class="bt">document.write</button>
             <p>Przycisk do document.write</p>
-
         </div>
+    <div class="box"><button class="my-btn" id="alertBtn">window.alert()</button>
+        </div>
+    <div class="box"> <button class="my-btn" id="htmlBtn">inner.html()</button>
+        </div>
+    <div class="box"> <button class="my-btn" id="textBtn">inner.text()</button>
+        </div>
+
+  <div id="output">Tutaj pojawi się wynik działania innerHTML lub innerText.</div>
+
+
 
     </main>
     <footer style="opacity: 0.5;">
