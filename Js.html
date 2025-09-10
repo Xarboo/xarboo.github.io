@@ -75,20 +75,24 @@
         <h1>IN WORK</h1>
     </header>
     <main>
+          <script>
+    function writeToDocument() {
+      document.write('<h2>to zostało napisane w document.write() F5</h2>');
+    }
+               document.getElementById('clbt').onclick = function() {
+    console.log('kliknąłeś przycisk Console.log');
+  };
+  </script>
         <button onclick="goToMainPage()" style="position: fixed; bottom:10px; left: 20px; z-index: 1000;" id="back">Powrót</button>
         <div class="box">
-            <button onclick="console.log('kliknąłeś przycisk')" class="bt">Console.log</button><br>
+            <button id="clbt" class="bt">Console.log</button><br>
             <p>Na kliknięcie przycisku wyświetla się w console.log</p>
         </div>
         <br>
         <div class="box">
             <button onclick="writeToDocument()" class="bt">document.write</button>
             <p>Przycisk do document.write</p>
-  <script>
-    function writeToDocument() {
-      document.write('<h2>to zostało napisane w document.write() F5</h2>');
-    }
-  </script>
+
         </div>
 
     </main>
