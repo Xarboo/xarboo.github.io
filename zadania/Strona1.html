@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            
+            width: 1200px;
+            background: #eae08a;
+            font-family: 'Montserrat', Arial, sans-serif;
+            margin:auto;
+            padding: 0;
+        }
+        nav{
+            background-color: pink;
+            padding: 10px;
+            text-align: left;
+            text-transform: capitalize;
+        }
+        header{
+            text-align: center;
+            background-color: rgb(168, 168, 168);
+            padding: 20px 0 10px 0;
+        }
+        section{
+            
+            width: 900px;
+            float: right;
+            background-color: rgb(255, 165, 76);
+        }
+        aside{
+            float: left;
+            width: 300px;
+        }
+       footer {
+            background: #b8cbe9;
+            padding: 20px 0 10px 0;
+            position: relative;
+            width: 1200px;
+            height: auto;
+            clear: both;
+        }
+
+        footer a {
+            color: #0000ee;
+            text-decoration: underline;
+            font-size: 16px;
+            margin-right: 5px;
+    }
+    ul, li{
+        text-align: left;
+    }
+    #imie{
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>
+            Znaczki HTML5
+        </h1>
+    </header>
+    <nav>
+        <p>menu</p>
+        <a href="google.com">Link do google</a>
+    </nav>
+    <aside>
+        <img src="img/bee.png" alt="motyl" style="width: 250px; height: 250px;">
+    </aside>
+    <section>
+        <article>
+            <h2>Punktowanie i numerowanie</h2>
+                <ul>
+                    <li>Punkt</li>
+                    <li>Punkt</li>
+                    <li>Punkt</li>
+                    <li>Punkt</li>
+                </ul>
+                <ol>
+                <li>Coffee</li>
+                <li>Tea
+                    <ul>
+                    <li>z sokiem</li>
+                    <li>bez cukru</li>
+                    <li>z cukrem</li>
+                    </ul>
+                </li>
+                    <li>Milk</li>
+                </ol>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer non dictum mauris, quis elementum lacus. Phasellus et tortor eget magna ultrices tristique. Curabitur enim ligula, tincidunt eget varius tristique, mollis sed arcu. Ut purus dolor, ultricies id rhoncus sodales, efficitur ac quam.</p>
+        </article>
+        <div>
+            <figure>
+                <img src="img/hot_dog.png" alt="hotdog" style="width: 70px; height: 150px;  margin-bottom: 10px;" title="hotdog">
+                    <figcaption>Hot-dog</figcaption>
+            </figure>
+            <figure>
+                <img src="img/karda.png" alt="karda" style="width: 200px; height: 200px; margin-bottom: 10px;" title="karda">
+                    <figcaption>Kadra</figcaption>
+            </figure>
+        </div>
+    </section>
+    <footer>
+      <div id="imie"><strong>Bercik</strong></div>
+      <a href="mailto:test@example.com">napisz do mnie</a> <a href="tel:+4733378901">+47 333 78 901</a>
+    </footer>
+</body>
+</html>
