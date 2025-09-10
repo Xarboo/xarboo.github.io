@@ -104,6 +104,19 @@
                document.getElementById('clbt').onclick = function() {
                     console.log('kliknąłeś przycisk Console.log');
   };
+              document.getElementById('alertBtn').addEventListener('click', function() {
+  window.alert('To jest alert wywołany przez window.alert()!');
+});
+
+document.getElementById('htmlBtn').addEventListener('click', function() {
+  // inner.html() = innerHTML w JS
+  document.getElementById('output').innerHTML = '<b>Przykład użycia innerHTML:</b> <span style="color: green;">To jest tekst z HTML!</span>';
+});
+
+document.getElementById('textBtn').addEventListener('click', function() {
+  // inner.text() = innerText w JS
+  document.getElementById('output').innerText = 'Przykład użycia innerText: To jest tekst bez znaczników HTML!';
+});
   </script>
         <button onclick="goToMainPage()" style="position: fixed; bottom:10px; left: 20px; z-index: 1000;" id="back">Powrót</button>
         <div class="box">
