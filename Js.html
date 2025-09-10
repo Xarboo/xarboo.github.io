@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>czarna strona</title>
+    <style>
+        body {
+            background: #121212;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header, footer {
+            background: #1e1e1e;
+            text-align: center;
+            padding: 20px 0;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    #back {
+            background: #6200ea;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 18px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .bt {
+            background: #005a17;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 18px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 20px;
+            margin: 0 auto;
+            display: block;
+        }
+        .box {
+      padding: 20px;
+      width: 300px;
+      background: #0b004d;
+      margin: 40px auto;
+      border-radius: 8px;
+      box-shadow: 0 0px 10px rgba(31, 136, 255, 0.438);
+      text-align: center;
+    }
+        button:hover {
+            background: #3700b3;
+        }
+    </style>
+
+    <script>
+        function goToMainPage() {
+            window.location.href = 'main.html';
+        }
+    </script>
+
+
+
+</head>
+<body>
+    <header>
+        <h1>IN WORK</h1>
+    </header>
+    <main>
+        <button onclick="goToMainPage()" style="position: fixed; bottom:10px; left: 20px; z-index: 1000;" id="back">Powrót</button>
+        <div class="box">
+            <button onclick="console.log('kliknąłeś przycisk')" class="bt">Console.log</button><br>
+            <p>Na kliknięcie przycisku wyświetla się w console.log</p>
+        </div>
+        <br>
+        <div class="box">
+            <button onclick="writeToDocument()" class="bt">Use document.write</button>
+  <script>
+    function writeToDocument() {
+      document.write('<h2>to zostało napisane w document.write()</h2>');
+    }
+  </script>
+        </div>
+
+    </main>
+    <footer style="opacity: 0.5;">
+       Copyright © Xar 2025-2026        
+    </footer>
+</body>
+</html>
