@@ -2,16 +2,23 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>czarna strona</title>
-    <style>
+    <title>SCAM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+     <style>
+         html{  
+            font-family: "Kode Mono", monospace;
+        }
         body {
+            text-transform: capitalize;
             background: #121212;
             color: #e0e0e0;
-            font-family: Arial, sans-serif;
             margin: 0;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            /* remove font-family here to keep the UnifrakturMaguntia font */
         }
         header, footer {
             background: #1e1e1e;
@@ -33,6 +40,10 @@
             padding: 10px 18px;
             font-size: 1em;
             cursor: pointer;
+            position: fixed; 
+            bottom:10px; 
+            left: 20px; 
+            z-index: 1000;
             margin-top: 20px;
         }
         .btn {
@@ -43,89 +54,183 @@
             padding: 10px 18px;
             font-size: 1em;
             cursor: pointer;
-            margin-top: 20px;
             margin: 0 auto;
-            display: block;
+            display: inline-block;
         }
         .box {
-          padding: 20px;
-          width: 300px;
-          background: #0b004d;
-          margin: 40px auto;
-          border-radius: 8px;
-          box-shadow: 0 0px 10px rgba(31, 136, 255, 0.438);
-          text-align: center;
+            padding: 20px;
+            width: 300px;
+            background: #0b004d;
+            margin: 40px auto;
+            border-radius: 8px;
+            box-shadow: 0 0px 10px rgba(31, 136, 255, 0.438);
+            text-align: center;
         }
-        button:hover {
+        .con-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center; 
+            margin-bottom: 20px;
+        }
+        .con {
+            display: flex;
+            justify-content: center;  /* centers horizontally */
+            align-items: center;      /* optional vertical centering */
+            padding: 20px;
+            width: 100px;
+            background: #0b004d;
+            margin: 40px 0;
+            border-radius: 8px;
+            box-shadow: 0 0px 10px rgba(31,136,255,0.438);
+        }
+        .btn:hover {
             background: #3700b3;
         }
         #output {
-          margin-top: 20px;
-          padding: 10px;
-          border: 1px solid #ddd;
-          min-height: 40px;
-          font-size: 18px;
-          background: #f7f7f7;
+            text-align: center;
+            width: 850px;
+            background: hsla(295, 100%, 50%, 0.162);
+            font-size: 15px;
+            padding: 10px;
+            height: 30px;
+            border-radius: 41px;
+            margin: 10px 0;
+            border: 1px solid #00ff37;
+
         }
-        .btn:hover {
-          background-color: #1565c0;
+        #realConsole {
+            width: 850px;
+            background: #111;
+            font-size: 15px;
+            padding: 10px;
+            height: 220px;
+            overflow-y: auto;
+            border-radius: 5px;
+            margin: 20px 0;
+            border: 1px solid #333;
+            white-space: pre-wrap;
         }
+        .log {
+            color: #b9f; }
+        .warn {
+            color: #ff0; }
+        .error { 
+            color: #f99; }
+        .info {
+            color: #9ef; }
 
-</style>
-
-    <script>
-        function goToMainPage() {
-            window.location.href = 'main.html';
-        }
-    </script>
-
-
-
+    </style>
 </head>
 <body>
     <header>
         <h1>Skrypty</h1>
     </header>
-    <main>
-          <script>
-    function writeToDocument() {
-      document.write('<h2>to zostało napisane w document.write() F5</h2>');
-    }
-               document.getElementById('clbt').onclick = function() {
-                    console.log('kliknąłeś przycisk Console.log');
-  };
-              document.getElementById('alertBtn').addEventListener('click', function() {
-  window.alert('To jest alert wywołany przez window.alert()!');
-});
-
-document.getElementById('htmlBtn').addEventListener('click', function() {
-  // inner.html() = innerHTML w JS
-  document.getElementById('output').innerHTML = '<b>Przykład użycia innerHTML:</b> <span style="color: green;">To jest tekst z HTML!</span>';
-});
-
-document.getElementById('textBtn').addEventListener('click', function() {
-  // inner.text() = innerText w JS
-  document.getElementById('output').innerText = 'Przykład użycia innerText: To jest tekst bez znaczników HTML!';
-});
-  </script>
-        <button onclick="goToMainPage()" style="position: fixed; bottom:10px; left: 20px; z-index: 1000;" id="back">Powrót</button>
-        <div class="box">
-            <button id="clbt" class="btn">Console.log</button><br>
-            <p>Na kliknięcie przycisku wyświetla się w console.log</p>
+    <main>  
+        <h2>Konsola</h2>
+        <div id="realConsole"></div>
+        <div class="con-container">
+            <div class="con"><button onclick="console.log('Zapis!')" class="btn">Zapis</button></div>
+            <div class="con"><button onclick="console.warn('Ostrzeżenie!')" class="btn">Ostrzeżenie</button></div>
+            <div class="con"><button onclick="console.error('Error!')" class="btn">Error</button></div> 
+            <div class="con"><button onclick="console.info('info!')" class="btn">Info</button></div>
         </div>
+        <script>
+        (function() {
+          const realConsole = document.getElementById('realConsole');
+          const orig = {
+            log: console.log,
+            warn: console.warn,
+            error: console.error,
+            info: console.info
+          };
+          function addToPage(type, args) {
+            const msg = document.createElement('div');
+            msg.className = type;
+            msg.textContent = `[${type}] ` + Array.from(args).join(' ');
+            realConsole.appendChild(msg);
+            realConsole.scrollTop = realConsole.scrollHeight;
+          }
+          console.log = function(...args) {
+            orig.log.apply(console, args);
+            addToPage('log', args);
+          };
+          console.warn = function(...args) {
+            orig.warn.apply(console, args);
+            addToPage('warn', args);
+          };
+          console.error = function(...args) {
+            orig.error.apply(console, args);
+            addToPage('error', args);
+          };
+          console.info = function(...args) {
+            orig.info.apply(console, args);
+            addToPage('info', args);
+          };
+        })();
+        </script>
+
+        <script>
+            function goToMainPage() {
+                window.location.href = '../index.html';
+            }
+            // Przykłady użycia różnych metod JavaScript do wyświetlania tekstu
+            function writeToDocument() {
+                document.write('<h2>to zostało napisane w document.write() F5</h2>');
+            }
+            document.getElementById('clbt').onclick = function() {
+                console.log('kliknąłeś przycisk Console.log');
+            };
+        </script>
+
+        <button onclick="goToMainPage()" id="back">Powrót</button> 
         <br>
-    <div class="box">
-            <button onclick="writeToDocument()" class="btn">document.write</button>
-            <p>Przycisk do document.write</p>
-        </div>
-    <div class="box"><button class="btn" id="alertBtn">window.alert()</button>
-        </div>
-    <div class="box"> <button class="btn" id="htmlBtn">inner.html()</button>
-        </div>
-    <div class="box"> <button class="btn" id="textBtn">inner.text()</button>
-        </div>
+            <h2>Metody wyświetlania tekstu w JavaScript</h2>
+    <!-- Przycisk i skrypt do Document.write -->
+            <div style="display:flex; gap:20px; justify-content:center; margin:20px 0;">
+                <div class="box">
+                <button onclick="writeToDocument()" class="btn">document.write</button>
+                <p>Przycisk do document.write</p>
+            </div>
+    <!-- Przycisk do Window.alert -->
+            <div class="box">
+                <button class="btn" id="alertBtn">window.alert()</button>
+                <p>Window.alert wyświetla okienko z komunikatem</p>
+            </div>
+            
+    <!-- Skrypt do window.alert -->
+            <script>
+        document.getElementById('alertBtn').addEventListener('click', () => {
+        alert('To jest alert wywołany przez window.alert!');
+        });
+            </script>
 
-  <div id="output">Tutaj pojawi się wynik działania innerHTML lub innerText.</div>
+        </div>
+                <div id="output">Tutaj pojawi się wynik działania innerHTML lub innerText.
+        </div>
+       <div style="display:flex; gap:20px; justify-content:center; margin:20px 0;">
+        <!-- Przycisk do Inner.html -->
+        <div class="box">
+            <button class="btn" id="htmlBtn">inner.html()</button>
+            <p>Przykład użycia innerHTML do wstawienia tekstu z HTML</p>
+        </div>
+        <!-- Skrypt do inner.html -->
+        <script>
+                document.getElementById('htmlBtn').addEventListener('click', function() {
+                document.getElementById('output').innerHTML = '<b>Przykład użycia innerHTML:</b> <span style="color: green;">To jest tekst z HTML!</span>';
+            });
+        </script>
+        <!-- Przycisk do Inner.text -->
+                    <div class="box">
+                <button class="btn" id="textBtn">inner.text()</button>
+                <p>Przykład użycia innerText do wstawienia zwykłego tekstu</p>
+            </div>
+        </div>
+        <!-- Skrypt do inner.text -->
+        <script>
+                document.getElementById('textBtn').addEventListener('click', function() {
+                document.getElementById('output').innerText = 'Przykład użycia innerText: To jest zwykły tekst bez HTML.';
+            });
+        </script>
 
 
 
