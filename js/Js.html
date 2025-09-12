@@ -234,7 +234,7 @@
         <h2>Okna Diagolowe</h2>
         <div style="display:flex; gap:20px; justify-content:center; margin:20px 0;">
             <div class="box">
-                <button onclick="showConfirm()">Kliknij mnie (confirm)</button>
+                <button onclick="showConfirm()" class="btn">Kliknij mnie (confirm)</button>
                         <script>
                             function showConfirm() {
                               const wynik = window.confirm("Czy na pewno chcesz kontynuować?");
@@ -247,7 +247,7 @@
                         </script>
             </div>
             <div class="box">
-                <button onclick="showPrompt()">Kliknij mnie (prompt)</button>
+                <button onclick="showPrompt()" class="btn">Kliknij mnie (prompt)</button>
                     <script>
                         function showPrompt() {
                           const imie = window.prompt("Jak masz na imię?", "Jan");
