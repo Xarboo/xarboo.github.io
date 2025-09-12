@@ -123,6 +123,8 @@
 </head>
 <body>
     <header>
+
+        
         <h1>Skrypty</h1>
     </header>
     <main>  
@@ -231,7 +233,11 @@
                 document.getElementById('output').innerText = 'Przykład użycia innerText: To jest zwykły tekst bez HTML.';
             });
         </script>
-        <h2>Okna Diagolowe</h2>
+
+
+
+        
+        <h3>Okna Diagolowe</h3>
         <div style="display:flex; gap:20px; justify-content:center; margin:20px 0;">
             <div class="box">
                 <!-- Przycisk do Confirm -->
@@ -241,9 +247,9 @@
                             function showConfirm() {
                               const wynik = window.confirm("Czy na pewno chcesz kontynuować?");
                             if (wynik) {
-                                alert("Potwierdziłeś!");
+                                alert("Potwierdziłeś");
                                     } else {
-                                        alert("Anulowałeś!");
+                                        alert("Anulowałeś");
                                             }
                             }
                         </script>
@@ -256,9 +262,9 @@
                 <!-- Skrypt do Promptu -->
                     <script>
                         function showPrompt() {
-                          const imie = window.prompt("Jak masz na imię?", "Jan");
+                          const imie = window.prompt("Jak masz na imię?", );
                         if (imie !== null && imie.trim() !== "") {
-                            alert(`Cześć, ${imie}!`);
+                            alert(`Podałeś imię ${imie}!`);
                         } else {
                             alert("Nie podałeś imienia.");
                             }
