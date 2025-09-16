@@ -1,1 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Przykład użycia var, let, const i konwersji w JS</title>
+</head>
+<body>
+  <h2>Przykłady: var, let, const, konwersja i suma liczb</h2>
+  <div id="output"></div>
 
+  <script>
+    // Przykład użycia var
+    var liczbaVar = 5;
+    // Przykład użycia let
+    let liczbaLet = 10;
+    // Przykład użycia const
+    const liczbaConst = 15;
+
+    // Konwersja ciągu znaków na liczbę
+    let tekst = "123";
+    let liczba = Number(tekst); // lub parseInt(tekst), parseFloat(tekst)
+    
+    // Suma dwóch liczb
+    let suma = liczbaVar + liczbaLet + liczbaConst + liczba;
+
+    document.getElementById("output").innerHTML = `
+      <strong>Przykład var:</strong> var liczbaVar = 5; => ${liczbaVar}<br>
+      <strong>Przykład let:</strong> let liczbaLet = 10; => ${liczbaLet}<br>
+      <strong>Przykład const:</strong> const liczbaConst = 15; => ${liczbaConst}<br>
+      <strong>Konwersja tekstu na liczbę:</strong> let liczba = Number("123"); => ${liczba}<br>
+      <strong>Suma wszystkich liczb:</strong> ${liczbaVar} + ${liczbaLet} + ${liczbaConst} + ${liczba} = <b>${suma}</b>
+    `;
+  </script>
+</body>
+</html>
