@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Operatory JS — przykłady i wyjaśnienia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --main:#0e0f1c;
+      --bg:#0e0f1c;
+      --card:#1a1b2d;
+      --text:#e6eef8;
+      --accent:#4f9dff;
+      --muted:#a1accf;
+    }
+    html,body{height:100%;margin:0;font-family:'Kode Mono', monospace;background:var(--bg);color:var(--text)}
+    .wrap{max-width:1400px;margin:24px auto;padding:20px;background:var(--card);border-radius:12px;box-shadow:0 6px 30px rgba(0,0,0,0.6)}
+    header{display:flex;align-items:center;gap:16px}
+    header h1{margin:0;font-size:20px;color:var(--accent)}
+    button{background:var(--accent);color:#fff;border:0;padding:6px 10px;border-radius:8px;cursor:pointer;margin-top:6px}
+    .grid{display:grid;grid-template-columns:1fr 320px;gap:16px;margin-top:16px}
+    main{padding:12px}
+    section{border:1px solid #2e3149;padding:12px;border-radius:8px;margin-bottom:12px;background:#12131f}
+    section h2{margin:0 0 8px 0;color:var(--accent);font-size:16px}
+    .explain{color:var(--muted);font-size:13px;margin-bottom:8px}
+    pre.code{background:#0e0f1c;color:#e6eef8;padding:10px;border-radius:6px;overflow:auto;font-size:13px}
+    .result{background:#1e2133;border-radius:6px;padding:8px;font-family:monospace;color:var(--text)}
+    aside{background:#12131f;border:1px solid #2e3149;border-radius:8px;height:calc(100vh - 80px);display:flex;flex-direction:column;position:sticky;top:20px}
+    .console{flex:1;background:#0e0f1c;color:#e6eef8;border-radius:6px;padding:8px;overflow:auto;font-family:'Kode Mono', monospace;font-size:13px;min-height:200px}
+    .console .line{white-space:pre-wrap;margin:0 0 6px}
+    footer{margin-top:12px;font-size:12px;color:var(--muted)}
+    .small{font-size:13px;color:var(--muted)}
+    .badge{display:inline-block;background:var(--accent);color:#fff;padding:4px 8px;border-radius:999px;font-size:12px;position:sticky;top:0;z-index:1}
+    #backBtn{position:fixed;bottom:20px;left:20px;background:var(--accent);color:#fff;padding:10px 14px;border-radius:8px;cursor:pointer;border:0}
+    footer {
+            background: #13131f;
+            text-align: center;
+            padding: 20px 0;
+        }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Operatory JavaScript — przykłady i wyjaśnienia</h1>
+    </header>
+
+    <div class="grid">
+      <main>
+        <!-- Arithmetic -->
+        <section id="arithmetic">
+          <h2>Operatory arytmetyczne</h2>
+          <div class="explain">Dodawanie, odejmowanie, mnożenie, dzielenie i modulo. Wynik jest liczbą. W JS używamy operatorów + - * / %.</div>
+          <pre class="code" id="code-arith">// przykłady
+let a = 10;
+let b = 3;
+console.log('a + b =', a + b);
+console.log('a - b =', a - b);
+console.log('a * b =', a * b);
+console.log('a / b =', a / b);
+console.log('a % b =', a % b);
+console.log('++a (pre) =', ++a);
+console.log('b++ (post) =', b++);
+console.log('b after post++ =', b);
+</pre>
+          <button onclick="runAndClear('code-arith')">Uruchom ten przykład</button>
+        </section>
+
+        <!-- Logical -->
+        <section id="logical">
+          <h2>Operatory logiczne</h2>
+          <div class="explain">AND, OR, NOT. Wartości truthy/falsy decydują o wyniku. Używamy && || !. Przydatne w warunkach i krótkim ocenie wartości.</div>
+          <pre class="code" id="code-logical">let x = 0;
+let y = 'hello';
+console.log('x && y =', x && y);
+console.log('x || y =', x || y);
+console.log('!x =', !x);
+console.log('(5 > 3) && (2 < 1) =', (5>3) && (2<1));
+</pre>
+          <button onclick="runAndClear('code-logical')">Uruchom ten przykład</button>
+        </section>
+
+        <!-- Bitwise -->
+        <section id="bitwise">
+          <h2>Operatory bitowe</h2>
+          <div class="explain">Działają na reprezentacji 32-bitowej liczb całkowitych. & | ^ ~ << >> >>>.</div>
+          <pre class="code" id="code-bitwise">let p = 5;  // 0101
+let q = 3;  // 0011
+console.log('p & q =', p & q);
+console.log('p | q =', p | q);
+console.log('p ^ q =', p ^ q);
+console.log('~p =', ~p);
+console.log('p << 1 =', p << 1);
+console.log('p >> 1 =', p >> 1);
+console.log('p >>> 1 =', p >>> 1);
+</pre>
+          <button onclick="runAndClear('code-bitwise')">Uruchom ten przykład</button>
+        </section>
+
+        <!-- Assignment -->
+        <section id="assignment">
+          <h2>Operatory przypisania</h2>
+          <div class="explain">Proste przypisanie i skrócone kombinacje: =, +=, -=, *=, /=, %=, <<=, &=, |=, ^=. Modyfikują zmienną po lewej.</div>
+          <pre class="code" id="code-assign">let n = 10;
+n += 5; console.log('n += 5 ->', n);
+n -= 3; console.log('n -= 3 ->', n);
+n *= 2; console.log('n *= 2 ->', n);
+n /= 4; console.log('n /= 4 ->', n);
+n %= 3; console.log('n %= 3 ->', n);
+let m = 1; m <<= 2; console.log('m <<= 2 ->', m);
+</pre>
+          <button onclick="runAndClear('code-assign')">Uruchom ten przykład</button>
+        </section>
+
+        <!-- Comparison -->
+        <section id="comparison">
+          <h2>Operatory porównania</h2>
+          <div class="explain">== i ===. == konwertuje typy, === porównuje bez konwersji. != i !== analogicznie. Inne: &gt;, &lt;, &gt;=, &lt;=.</div>
+          <pre class="code" id="code-compare">console.log("'5' == 5 ->", '5' == 5);
+console.log("'5' === 5 ->", '5' === 5);
+console.log('0 == false ->', 0 == false);
+console.log('0 === false ->', 0 === false);
+console.log('5 > 3 ->', 5 > 3);
+console.log('5 <= 5 ->', 5 <= 5);
+</pre>
+          <button onclick="runAndClear('code-compare')">Uruchom ten przykład</button>
+        </section>
+
+        <!-- String & chaining -->
+        <section id="string">
+          <h2>Operatory łańcuchowe i łańcuchowanie</h2>
+          <div class="explain">Operacje na łańcuchach: konkatenacja (+), template literals. "Łańcuchowanie" oznacza wywoływanie metod jedna po drugiej oraz optional chaining operator ?. i nullish coalescing ??.</div>
+          <pre class="code" id="code-string">let s1 = 'Cześć';
+let s2 = 'świat';
+console.log('Konkatenacja: s1 + " " + s2 ->', s1 + ' ' + s2);
+console.log('Template literal ->', `${s1}, ${s2}!`);
+let person = {name:'Ana', contact:{email:'ana@ex.com'}};
+console.log('Optional chaining person.contact?.email ->', person.contact?.email);
+let maybe = null;
+console.log('Nullish coalescing maybe ?? "domyślna" ->', maybe ?? 'domyślna');
+console.log("Łańcuchowanie metod: '  ok  '.trim().toUpperCase() ->", '  ok  '.trim().toUpperCase());
+</pre>
+          <button onclick="runAndClear('code-string')">Uruchom ten przykład</button>
+        </section>
+
+        <footer class="small">Plik demonstracyjny. Każdy blok ma kod do uruchomienia. Konsola obok wyświetla output.</footer>
+      </main>
+
+      <aside>
+        <div class="badge">Konsola</div>
+        <div id="console" class="console" aria-live="polite"></div>
+        <div style="height:8px"></div>
+        <div class="small">Konsola przechwytuje console.log. Kliknij przyciski obok przykładów.</div>
+      </aside>
+    </div>
+  </div>
+
+  <button id="backBtn" onclick="history.back()">← Powrót</button>
+
+  <script>
+    (function(){
+      const orig = console.log.bind(console);
+      const consoleEl = document.getElementById('console');
+      console.log = function(...args){
+        try{
+          const txt = args.map(a=>{
+            try{ return (typeof a === 'object') ? JSON.stringify(a, null, 2) : String(a);
+            }catch(e){return String(a)}
+          }).join(' ');
+          const line = document.createElement('div');
+          line.className='line';
+          line.textContent = txt;
+          consoleEl.appendChild(line);
+          consoleEl.scrollTop = consoleEl.scrollHeight;
+        }catch(e){}
+        orig(...args);
+      }
+    })();
+
+    function runCodeFrom(id){
+      const code = document.getElementById(id).textContent;
+      try{
+        eval(code);
+      }catch(err){
+        console.log('Błąd w kodzie:', err);
+      }
+    }
+
+    function runAndClear(id){
+      document.getElementById('console').innerHTML = '';
+      runCodeFrom(id);
+    }
+
+    console.log('Kliknij przycisk pod wybranym przykładem aby zobaczyć output.');
+  </script>
+    <footer style="opacity: 0.5;">
+        Copyright © Xar 2025-2030
+    </footer>
+</body>
+</html>
