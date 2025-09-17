@@ -1,35 +1,156 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <title>Przykład użycia var, let, const i konwersji w JS</title>
+    <meta charset="UTF-8">
+    <title>Przykład użycia var, let, const i konwersji w JS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+    <style>
+        html {
+            font-family: "Kode Mono", monospace;
+        }
+
+        body {
+            text-transform: capitalize;
+            background: #0e0f1c;
+            color: #e0e0e0;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header, footer {
+            background: #13131f;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #back {
+            background: #6200ea;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 18px;
+            font-size: 1em;
+            cursor: pointer;
+            position: fixed;
+            bottom: 10px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .box {
+            min-height: auto;
+            padding: 20px;
+            width: 800px;
+            background: #0b004d;
+            margin: 40px auto;
+            border-radius: 8px;
+            box-shadow: 0 0px 10px rgba(31, 136, 255, 0.438);
+            text-align: center;
+        }
+        .bx2{
+            min-height: 8vh;
+            padding: 20px;
+            width: 800px;
+            background: #003503;
+            margin: 4px auto;
+            border-radius: 8px;
+            box-shadow: 0 0px 10px rgba(31, 136, 255, 0.438);
+            text-align: left;
+=
+        }
+    </style>
 </head>
 <body>
-  <h2>Przykłady: var, let, const, konwersja i suma liczb</h2>
-  <div id="output"></div>
-
-  <script>
-    // użycie var'a
-    var liczbaVar = 5;
-    // użycie let'a
-    let liczbaLet = 10;
-    // użycie const'a
-    const liczbaConst = 15;
-
-    // Konwersja ciągu znaków na liczbę
-    let tekst = "123";
-    let liczba = Number(tekst); // lub parseInt(tekst), parseFloat(tekst)
+    <header>
+        <h1>zmienne</h1>
+    </header>
+    <main>
+        <h2>Przykłady: var, let, const, konwersja i suma liczb</h2>
     
-    // Suma dwóch liczb
-    let suma = liczbaVar + liczbaLet + liczbaConst + liczba;
+            <div class="box" id="outputVar"></div>
+        <script>
 
-    document.getElementById("output").innerHTML = `
-      <strong>Przykład var:</strong> var liczbaVar = 5; => ${liczbaVar}<br>
-      <strong>Przykład let:</strong> let liczbaLet = 10; => ${liczbaLet}<br>
-      <strong>Przykład const:</strong> const liczbaConst = 15; => ${liczbaConst}<br>
-      <strong>Konwersja tekstu na liczbę:</strong> let liczba = Number("123"); => ${liczba}<br>
-      <strong>Suma wszystkich liczb:</strong> ${liczbaVar} + ${liczbaLet} + ${liczbaConst} + ${liczba} = <b>${suma}</b>
-    `;
-  </script>
+            // użycie var'a
+            var liczbaVar = 5;
+            document.getElementById("outputVar").innerHTML = `
+                <strong>Przykład var:</strong> var liczbaVar = 5; => ${liczbaVar}<br>`;
+        </script>
+
+            <div class="bx2"> Skrypt dla Var: <br>
+                var liczbaVar = 5;
+                document.getElementById("outputVar").innerHTML = `<br>
+                    <strong>Przykład var:</strong> var liczbaVar = 5; => ${liczbaVar}`;
+            </div>
+            <div class="box" id="outputLet"></div>
+        <script>
+            // użycie let'a
+            let liczbaLet = 10;
+            document.getElementById("outputLet").innerHTML = `
+                <strong>Przykład let:</strong> let liczbaLet = 10; => ${liczbaLet}<br>`;
+        </script>
+
+            <div class="bx2"> Skrypt dla Let: <br>
+                let liczbaLet = 10;
+                document.getElementById("outputLet").innerHTML = `<br>
+                    <strong>Przykład let:</strong> let liczbaLet = 10; => ${liczbaLet}`;
+            </div>
+            <div class="box" id="outputConst"></div>
+        <script>
+            // użycie const'a
+            const liczbaConst = 15;
+            document.getElementById("outputConst").innerHTML = `
+                <strong>Przykład const:</strong> const liczbaConst = 15; => ${liczbaConst}<br>`;
+        </script>
+
+            <div class="bx2"> Skrypt dla Const: <br>
+                const liczbaConst = 15;
+                document.getElementById("outputConst").innerHTML = `<br>
+                    <strong>Przykład const:</strong> const liczbaConst = 15; => ${liczbaConst}`;
+            </div>
+            <div class="box" id="outputConversion"></div>
+        <script>
+            // Konwersja ciągu znaków na liczbę
+            let tekst = "123";
+            let liczba = Number(tekst); // lub parseInt(tekst), parseFloat(tekst)
+            document.getElementById("outputConversion").innerHTML = `
+                <strong>Konwersja tekstu na liczbę:</strong> let liczba = Number("123"); => ${liczba}<br>`;
+        </script>
+
+            <div class="bx2"> Skrypt dla Konwersji ciągu na liczbę: <br>
+                let tekst = "123";
+                let liczba = Number(tekst); // lub parseInt(tekst), parseFloat(tekst)
+                document.getElementById("outputConversion").innerHTML = `<br>
+                    <strong>Konwersja tekstu na liczbę:</strong> let liczba = Number("123"); => ${liczba}`;
+            </div>
+            <div class="box" id="outputSum"></div>
+        <script>
+            // Suma dwóch liczb
+            let suma = liczbaVar + liczbaLet + liczbaConst + liczba;
+            document.getElementById("outputSum").innerHTML = `
+                <strong>Suma wszystkich liczb:</strong> ${liczbaVar} + ${liczbaLet} + ${liczbaConst} + ${liczba} = <b>${suma}</b>`;
+        </script>
+
+            <div class="bx2"> Skrypt dla Sumy dwóch liczb: <br>
+                let suma = liczbaVar + liczbaLet + liczbaConst + liczba;
+                document.getElementById("outputSum").innerHTML = `<br>
+                    <strong>Suma wszystkich liczb:</strong> ${liczbaVar} + ${liczbaLet} + ${liczbaConst} + ${liczba} = <b>${suma}</b>`;
+            </div>
+        <button onclick="window.history.back()" id="back">Powrót</button>
+    </main>
+    <footer style="opacity: 0.5;">
+        Copyright © Xar 2025-2030
+    </footer>
 </body>
 </html>
