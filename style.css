@@ -1,8 +1,4 @@
-    @keyframes fadeGradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+
 body {
             font-family: "Kode Mono", monospace;
             font-optical-sizing: auto;
@@ -13,6 +9,7 @@ body {
             background: linear-gradient(-45deg, #2d00f7, #6a00f4, #8900f2, #a100f2, #b100e8, #bc00dd, #d100d1, #db00b6, #e500a4 , #f20089);
             background-size: 400% 400%;
             animation: gradientBG 8s ease infinite; 
+            cursor: crosshair;
         }
 @keyframes gradientBG {
       0% {background-position: 0% 50%;}
@@ -77,8 +74,4 @@ section {
 .social-nav a:hover {
   color: #00ff2a; /* Twitter blue, change as you like */
 }
-a{
-                  -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: fadeGradient 5s ease-in-out infinite;
-}
+
