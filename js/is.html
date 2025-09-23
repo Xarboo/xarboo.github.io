@@ -21,6 +21,20 @@
     pre.output{background:#021019;color:#dff3ff;padding:10px;border-radius:8px;min-height:48px;white-space:pre-wrap}
     footer{margin-top:20px;color:var(--muted);font-size:13px}
     small.hint{display:block;color:var(--muted);margin-top:8px}
+            #back {
+            background: #6200ea;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 18px;
+            font-size: 1em;
+            cursor: pointer;
+            position: fixed; 
+            bottom:10px; 
+            left: 20px; 
+            z-index: 1000;
+            margin-top: 20px;
+        }
   </style>
 </head>
 <body>
@@ -185,5 +199,7 @@
     });
 
   </script>
+          <button onclick="goToMainPage()" id="back">Powrót</button> 
+        <br>
 </body>
 </html>
