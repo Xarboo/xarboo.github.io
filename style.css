@@ -72,3 +72,8 @@ section {
 .social-nav a:hover {
   color: #00ff2a; /* Twitter blue, change as you like */
 }
+a{
+                  -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeGradient 5s ease-in-out infinite;
+}
