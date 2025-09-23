@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>5 przykładów instrukcji sterujących (if/switch/for/while/do-while)</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--muted:#9aa4b2;--accent:#60a5fa}
+    *{box-sizing:border-box;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial}
+    body{margin:0;background:linear-gradient(180deg,#071022 0%,var(--bg) 100%);color:#e6eef6;padding:32px}
+    .wrap{max-width:980px;margin:0 auto}
+    header{display:flex;align-items:center;gap:16px}
+    h1{margin:0;font-size:20px}
+    p.lead{color:var(--muted);margin-top:6px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:24px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(3,7,18,0.6);border:1px solid rgba(255,255,255,0.03)}
+    .card h2{margin:0 0 10px 0;font-size:16px}
+    label{display:block;color:var(--muted);font-size:13px;margin-bottom:6px}
+    input[type=text], input[type=number], select{width:100%;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit}
+    button{background:var(--accent);border:none;color:#07203a;padding:8px 10px;border-radius:10px;cursor:pointer;font-weight:600}
+    pre.output{background:#021019;color:#dff3ff;padding:10px;border-radius:8px;min-height:48px;white-space:pre-wrap}
+    footer{margin-top:20px;color:var(--muted);font-size:13px}
+    small.hint{display:block;color:var(--muted);margin-top:8px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>5 przykładów instrukcji sterujących w JavaScript</h1>
+        <p class="lead">Każdy przykład ma krótki opis, input i przycisk — kliknij, żeby zobaczyć efekt. Trochę jak laboratorium, tylko bez probówek.</p>
+      </div>
+    </header>
+
+    <div class="grid">
+      <!-- 1: if / else -->
+      <section class="card">
+        <h2>1. if / else — sprawdź wiek</h2>
+        <label for="age">Podaj swój wiek:</label>
+        <input id="age" type="number" min="0" value="18">
+        <div style="margin-top:10px"><button id="btnAge">Sprawdź</button></div>
+        <pre class="output" id="outAge">—</pre>
+        <small class="hint">Przykład if / else: decyzja zależna od warunku.</small>
+      </section>
+
+      <!-- 2: switch -->
+      <section class="card">
+        <h2>2. switch — dzień tygodnia</h2>
+        <label for="dayNum">Wybierz numer dnia (1-7):</label>
+        <select id="dayNum">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+        </select>
+        <div style="margin-top:10px"><button id="btnDay">Pokaż dzień</button></div>
+        <pre class="output" id="outDay">—</pre>
+        <small class="hint">switch sprawdza jedną zmienną przeciw wielu wartościom.</small>
+      </section>
+
+      <!-- 3: for loop -->
+      <section class="card">
+        <h2>3. for — suma liczb</h2>
+        <label for="sumN">Zsumuj liczby 1..N. Podaj N:</label>
+        <input id="sumN" type="number" min="1" value="10">
+        <div style="margin-top:10px"><button id="btnSum">Zsumuj</button></div>
+        <pre class="output" id="outSum">—</pre>
+        <small class="hint">for — powtarzanie z licznikiem (pętla). Uwaga: N może być duże — to demo.</small>
+      </section>
+
+      <!-- 4: while loop -->
+      <section class="card">
+        <h2>4. while — odliczanie</h2>
+        <label for="countFrom">Odlicz od (liczba >= 0):</label>
+        <input id="countFrom" type="number" min="0" value="5">
+        <div style="margin-top:10px"><button id="btnCount">Odlicz</button></div>
+        <pre class="output" id="outCount">—</pre>
+        <small class="hint">while powtarza, dopóki warunek jest prawdziwy.</small>
+      </section>
+
+      <!-- 5: do...while -->
+      <section class="card">
+        <h2>5. do...while — iteruj tablicę</h2>
+        <label for="items">Wprowadź kilka elementów oddzielonych przecinkami:</label>
+        <input id="items" type="text" value="jabłko,banan,gruszka">
+        <div style="margin-top:10px"><button id="btnIter">Iteruj (do...while)</button></div>
+        <pre class="output" id="outIter">—</pre>
+        <small class="hint">do...while wykona ciało przynajmniej raz, nawet jeśli tablica pusta.</small>
+      </section>
+    </div>
+
+    <footer>
+      <p>Masz pomysł na kolejny przykład? Napisz — dorzucę recenzję i zrobić to ładniej (albo zabawniej).</p>
+    </footer>
+  </div>
+
+  <script>
+    // 1. if / else — prosty check wieku
+    document.getElementById('btnAge').addEventListener('click', function(){
+      const age = Number(document.getElementById('age').value);
+      const out = document.getElementById('outAge');
+      if (Number.isNaN(age) || age < 0) {
+        out.textContent = 'Podaj poprawny wiek (0+).';
+        return;
+      }
+      if (age < 18) {
+        out.textContent = `Masz ${age} lat — jesteś niepełnoletni(a).`;
+      } else if (age < 65) {
+        out.textContent = `Masz ${age} lat — jesteś dorosły(a).`;
+      } else {
+        out.textContent = `Masz ${age} lat — masz uprawnienia seniorskie.`;
+      }
+    });
+
+    // 2. switch — dzień tygodnia
+    document.getElementById('btnDay').addEventListener('click', function(){
+      const num = Number(document.getElementById('dayNum').value);
+      const out = document.getElementById('outDay');
+      let day;
+      switch(num){
+        case 1: day = 'Poniedziałek'; break;
+        case 2: day = 'Wtorek'; break;
+        case 3: day = 'Środa'; break;
+        case 4: day = 'Czwartek'; break;
+        case 5: day = 'Piątek'; break;
+        case 6: day = 'Sobota'; break;
+        case 7: day = 'Niedziela'; break;
+        default: day = 'Nieznany dzień';
+      }
+      out.textContent = `Numer ${num} → ${day}.`;
+    });
+
+    // 3. for — suma 1..N
+    document.getElementById('btnSum').addEventListener('click', function(){
+      const N = Number(document.getElementById('sumN').value);
+      const out = document.getElementById('outSum');
+      if (!Number.isInteger(N) || N < 1) { out.textContent = 'Podaj N jako liczbę całkowitą >= 1.'; return; }
+      let sum = 0;
+      // pokaż przykład użycia pętli for
+      for (let i = 1; i <= N; i++) {
+        sum += i;
+      }
+      out.textContent = `Suma liczb od 1 do ${N} = ${sum}.`;
+    });
+
+    // 4. while — odliczanie
+    document.getElementById('btnCount').addEventListener('click', function(){
+      let n = Number(document.getElementById('countFrom').value);
+      const out = document.getElementById('outCount');
+      if (!Number.isFinite(n) || n < 0) { out.textContent = 'Podaj liczbę >= 0.'; return; }
+      n = Math.floor(n);
+      let text = '';
+      while (n >= 0) {
+        text += n + (n === 0 ? ' – koniec' : ', ');
+        n--;
+      }
+      out.textContent = text;
+    });
+
+    // 5. do...while — iteracja po tablicy elementów
+    document.getElementById('btnIter').addEventListener('click', function(){
+      const raw = document.getElementById('items').value;
+      const out = document.getElementById('outIter');
+      const arr = raw.split(',').map(s => s.trim()).filter(Boolean);
+
+      // do...while wykona się przynajmniej raz
+      let i = 0;
+      let text = '';
+      if (arr.length === 0) {
+        // pokaż, że do...while i tak wykona coś — tu manualny przykład
+        let doneOnce = false;
+        do {
+          text += '[brak elementów – wykonało się przynajmniej raz]\n';
+          doneOnce = true;
+        } while (false);
+      } else {
+        do {
+          text += `${i+1}. ${arr[i]}\n`;
+          i++;
+        } while (i < arr.length);
+      }
+
+      out.textContent = text.trim();
+    });
+
+  </script>
+</body>
+</html>
