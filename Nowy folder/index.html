@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kwalifikacja INF3 - Zadanie 9</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        .task-container {
+            transition: all 0.3s ease;
+        }
+        .task-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .code-block {
+            font-family: 'Courier New', monospace;
+            background-color: #f3f4f6;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-8">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-indigo-700 mb-4">Kwalifikacja INF.03</h1>
+            <h2 class="text-2xl font-semibold text-gray-700">Styczeń 2025 - Zadanie praktyczne nr 9</h2>
+            <div class="w-24 h-1 bg-indigo-500 mx-auto mt-4"></div>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Zadanie 1 -->
+            <div class="task-container bg-white p-6 rounded-lg shadow-md" data-aos="fade-up">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-indigo-700 font-bold">1</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">Zadanie 1</h3>
+                </div>
+                <p class="text-gray-600 mb-4">Utwórz skrypt, który po kliknięciu przycisku wyświetli okno dialogowe z komunikatem "Witaj na mojej stronie!".</p>
+                <button onclick="showWelcomeMessage()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md transition duration-300">
+                    Kliknij mnie
+                </button>
+            </div>
+
+            <!-- Zadanie 2 -->
+            <div class="task-container bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-indigo-700 font-bold">2</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">Zadanie 2</h3>
+                </div>
+                <p class="text-gray-600 mb-4">Utwórz skrypt, który po najechaniu myszką na przycisk zmieni jego kolor tła.</p>
+                <button id="hoverButton" class="bg-blue-500 hover:bg-red-500 text-white px-4 py-2 rounded-md transition duration-300">
+                    Najedź na mnie
+                </button>
+            </div>
+
+            <!-- Zadanie 3 -->
+            <div class="task-container bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="200">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-indigo-700 font-bold">3</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">Zadanie 3</h3>
+                </div>
+                <p class="text-gray-600 mb-4">Utwórz formularz z polem tekstowym i przyciskiem. Po kliknięciu przycisku wyświetl wartość wprowadzoną w polu tekstowym.</p>
+                <div class="space-y-3">
+                    <input type="text" id="userInput" placeholder="Wprowadź tekst..." class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <button onclick="showInputValue()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md transition duration-300">
+                        Wyświetl wartość
+                    </button>
+                    <p id="outputText" class="text-gray-700 font-medium"></p>
+                </div>
+            </div>
+
+            <!-- Zadanie 4 -->
+            <div class="task-container bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="300">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-indigo-700 font-bold">4</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">Zadanie 4</h3>
+                </div>
+                <p class="text-gray-600 mb-4">Utwórz skrypt, który po kliknięciu przycisku doda nowy element do listy.</p>
+                <div class="space-y-3">
+                    <button onclick="addListItem()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md transition duration-300">
+                        Dodaj element
+                    </button>
+                    <ul id="itemList" class="list-disc pl-5 space-y-1">
+                        <li>Element 1</li>
+                        <li>Element 2</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Zadanie 5 -->
+            <div class="task-container bg-white p-6 rounded-lg shadow-md" data-aos="fade-up">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-indigo-700 font-bold">5</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">Zadanie 5</h3>
+                </div>
+                <p class="text-gray-600 mb-4">Utwórz skrypt, który zmienia kolor tła strony po kliknięciu przycisku.</p>
+                <div class="flex space-x-2">
+                    <button onclick="changeBackgroundColor('#f3f4f6')" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md transition duration-300">
+                        Jasne
+                    </button>
+                    <button onclick="changeBackgroundColor('#1f2937')" class="bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded-md transition duration-300">
+                        Ciemne
+                    </button>
+                </div>
+            </div>
+
+            <!-- Zadanie 6 -->
+            <div class="task-container bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-indigo-700 font-bold">6</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">Zadanie 6</h3>
+                </div>
+                <p class="text-gray-600 mb-4">Utwórz skrypt, który pokazuje/ukrywa element po kliknięciu przycisku.</p>
+                <div class="space-y-3">
+                    <button onclick="toggleElement()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md transition duration-300">
+                        Pokaż/Ukryj
+                    </button>
+                    <div id="toggleElement" class="p-4 bg-blue-100 text-blue-800 rounded-md">
+                        To jest element, który można pokazać/ukryć.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Zadanie 7 -->
+            <div class="task-container bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="200">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-indigo-700 font-bold">7</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">Zadanie 7</h3>
+                </div>
+                <p class="text-gray-600 mb-4">Utwórz skrypt, który zmienia tekst w elemencie po kliknięciu przycisku.</p>
+                <div class="space-y-3">
+                    <button onclick="changeText()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md transition duration-300">
+                        Zmień tekst
+                    </button>
+                    <p id="changeableText" class="text-gray-700 font-medium">Tekst przed zmianą.</p>
+                </div>
+            </div>
+
+            <!-- Zadanie 8 -->
+            <div class="task-container bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="300">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-indigo-700 font-bold">8</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">Zadanie 8</h3>
+                </div>
+                <p class="text-gray-600 mb-4">Utwórz skrypt, który wyświetla aktualną datę i godzinę po kliknięciu przycisku.</p>
+                <div class="space-y-3">
+                    <button onclick="showDateTime()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md transition duration-300">
+                        Pokaż datę i godzinę
+                    </button>
+                    <p id="dateTimeDisplay" class="text-gray-700 font-medium"></p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="mt-16 text-center text-gray-500">
+            <p>© 2025 Kwalifikacja INF.03 - Zadanie praktyczne nr 9</p>
+        </footer>
+    </div>
+
+    <script>
+        // Zadanie 1
+        function showWelcomeMessage() {
+            alert("Witaj na mojej stronie!");
+        }
+
+        // Zadanie 2
+        document.getElementById('hoverButton').addEventListener('mouseover', function() {
+            this.classList.remove('bg-blue-500');
+            this.classList.add('bg-red-500');
+        });
+        document.getElementById('hoverButton').addEventListener('mouseout', function() {
+            this.classList.remove('bg-red-500');
+            this.classList.add('bg-blue-500');
+        });
+
+        // Zadanie 3
+        function showInputValue() {
+            const inputValue = document.getElementById('userInput').value;
+            document.getElementById('outputText').textContent = `Wprowadzony tekst: ${inputValue}`;
+        }
+
+        // Zadanie 4
+        let itemCounter = 3;
+        function addListItem() {
+            const list = document.getElementById('itemList');
+            const newItem = document.createElement('li');
+            newItem.textContent = `Element ${itemCounter}`;
+            list.appendChild(newItem);
+            itemCounter++;
+        }
+
+        // Zadanie 5
+        function changeBackgroundColor(color) {
+            document.body.style.backgroundColor = color;
+        }
+
+        // Zadanie 6
+        function toggleElement() {
+            const element = document.getElementById('toggleElement');
+            if (element.style.display === 'none') {
+                element.style.display = 'block';
+            } else {
+                element.style.display = 'none';
+            }
+        }
+
+        // Zadanie 7
+        function changeText() {
+            document.getElementById('changeableText').textContent = 'Tekst został zmieniony!';
+        }
+
+        // Zadanie 8
+        function showDateTime() {
+            const now = new Date();
+            document.getElementById('dateTimeDisplay').textContent = `Aktualna data i godzina: ${now.toLocaleString()}`;
+        }
+
+        // Inicjalizacja bibliotek
+        AOS.init();
+        feather.replace();
+    </script>
+</body>
+</html>
