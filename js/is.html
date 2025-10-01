@@ -210,22 +210,7 @@
       out.textContent = text.trim();
     });
 
-    // 6. function — oblicz pole koła
-    function areaOfCircle(r) {
-      if (typeof r !== 'number' || r < 0) return NaN;
-      return Math.PI * r * r;
-    }
 
-    document.getElementById('btnCircle').addEventListener('click', function(){
-      const r = Number(document.getElementById('radius').value);
-      const out = document.getElementById('outCircle');
-      if (!Number.isFinite(r) || r < 0) {
-        out.textContent = 'Podaj poprawny promień (>= 0).';
-        return;
-      }
-      const area = areaOfCircle(r);
-      out.textContent = `Pole koła o promieniu ${r} to ${area.toFixed(2)}.`;
-    });
   </script>
 </body>
 </html>
