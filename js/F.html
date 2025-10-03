@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Przykłady function i const + function</title>
+  <link rel="script" href="f.js">
   <style>
     :root{--bg:#0f1724;--card:#0b1220;--muted:#9aa4b2;--accent:#60a5fa}
     *{box-sizing:border-box;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial}
@@ -76,36 +77,7 @@
     </div>
   </div>
 
-  <script>
-    // 1. klasyczna function
-    function square(num) {
-      if (typeof num !== 'number' || isNaN(num)) return NaN;
-      return num * num;
-    }
 
-    document.getElementById('btnSquare').addEventListener('click', () => {
-      const val = Number(document.getElementById('numSquare').value);
-      const out = document.getElementById('outSquare');
-      if (isNaN(val)) {
-        out.textContent = 'Podaj prawidłową liczbę.';
-        return;
-      }
-      const result = square(val);
-      out.textContent = `Kwadrat liczby ${val} to ${result}.`;
-    });
-
-    // 2. const + function
-    const greet = function(name) {
-      if (!name || typeof name !== 'string') return 'Nie podano imienia.';
-      return `Cześć, ${name}! Miło Cię widzieć.`;
-    }
-
-    document.getElementById('btnGreet').addEventListener('click', () => {
-      const name = document.getElementById('nameGreet').value.trim();
-      const out = document.getElementById('outGreet');
-      out.textContent = greet(name);
-    });
-  </script>
 </body>
 </html>
 
