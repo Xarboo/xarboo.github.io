@@ -1,4 +1,4 @@
-  <script>
+
     // 1. klasyczna function
     function square(num) {
       if (typeof num !== 'number' || isNaN(num)) return NaN;
@@ -27,4 +27,3 @@
       const out = document.getElementById('outGreet');
       out.textContent = greet(name);
     });
-  </script>
