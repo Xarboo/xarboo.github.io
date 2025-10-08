@@ -13,9 +13,11 @@
 <body>
 <nav class="social-nav">
         <a href="https://twitter.com/yourprofile" target="_blank" title="Twitter">
+            
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M22.46 5.98c-.77.34-1.6.57-2.47.67a4.3 4.3 0 0 0 1.89-2.37 8.59 8.59 0 0 1-2.72 1.04 4.28 4.28 0 0 0-7.3 3.9A12.14 12.14 0 0 1 3.1 4.93a4.28 4.28 0 0 0 1.33 5.71c-.7-.02-1.35-.21-1.92-.53v.05a4.28 4.28 0 0 0 3.44 4.19c-.33.09-.68.14-1.04.14-.25 0-.5-.02-.73-.07a4.28 4.28 0 0 0 3.99 2.97A8.6 8.6 0 0 1 2 19.54a12.13 12.13 0 0 0 6.56 1.92c7.88 0 12.2-6.53 12.2-12.2 0-.18-.01-.36-.02-.54a8.82 8.82 0 0 0 2.17-2.24z"/>
-              </svg><i class="fab fa-twitter"></i>
+              
+            </svg><i class="fab fa-twitter"></i>
 
             </a>
 
@@ -57,13 +59,31 @@
 
         </a>
 
-            </a>
-
+           </a>
     </nav>
-    
-
+    <div id="clock"></div>
     <div id="countdown"></div>
-
+            <script>
+                // Countdown script
+                function startCountdown() {
+                    var targetDate = new Date("Nov 24, 2025 00:00:00").getTime();
+                    var x = setInterval(function() {
+                        var now = new Date().getTime();
+                        var distance = targetDate - now;
+                        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                        document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+                        
+                        if (distance < 0) {
+                            clearInterval(x);
+                            document.getElementById("countdown").innerHTML = "EXPIRED";
+                        }
+                    }, 1000);
+                }
+                startCountdown();
+            </script>
     <script src="clock.js"></script>
 
     <div class="center-div">
