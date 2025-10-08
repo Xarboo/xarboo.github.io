@@ -104,18 +104,6 @@
         <pre class="output" id="outIter">—</pre>
         <small class="hint">do...while wykona ciało przynajmniej raz, nawet jeśli tablica pusta.</small>
       </section>
-
-      <!-- 6: function example -->
-      <section class="card">
-        <h2 class="gradient-text">6. function — oblicz pole koła</h2>
-        <label for="radius">Podaj promień (r):</label>
-        <input id="radius" type="number" min="0" value="2">
-        <div style="margin-top:10px"><button id="btnCircle">Policz pole koła</button></div>
-        <pre class="output" id="outCircle">—</pre>
-        <small class="hint">Przykład funkcji: function areaOfCircle(r) { ... }</small>
-      </section>
-    </div>
-
     <footer>
       <a href="../index.html"><button>⬅ Powrót na główną</button></a>
     </footer>
@@ -210,23 +198,7 @@
       out.textContent = text.trim();
 
       
-    // 6. function — oblicz pole koła
-    function areaOfCircle(r) {
-      if (typeof r !== 'number' || r < 0) return NaN;
-      return Math.PI * r * r;
-    }
-    document.getElementById('btnCircle').addEventListener('click', function(){
-      const r = Number(document.getElementById('radius').value);
-      const out = document.getElementById('outCircle');
-      if (!Number.isFinite(r) || r < 0) {
-        out.textContent = 'Podaj poprawny promień (>= 0).';
-        return;
-      }
-      const area = areaOfCircle(r);
-      out.textContent = `Pole koła o promieniu ${r} to ${area.toFixed(2)}.`;
 
-
-    });
     });
 
 
