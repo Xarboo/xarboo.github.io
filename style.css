@@ -74,4 +74,13 @@ section {
 .social-nav a:hover {
   color: #00ff2a; /* Twitter blue, change as you like */
 }
+.clockcon {
+    text-align: center;
+}
+
+#clock {
+    font-size: 48px;
+    font-weight: bold;
+    color: #333;
+}
 
