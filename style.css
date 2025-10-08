@@ -83,4 +83,17 @@ section {
     font-weight: bold;
     color: #333;
 }
-
+#countdown {
+    position: fixed;
+    bottom: 10px;  /* Adjust position from the bottom */
+    left: 50%;  /* Center horizontally */
+    transform: translateX(-50%);
+    font-family: 'Kode Mono', monospace;
+    font-size: 20px;
+    background-color: rgba(0, 0, 0, 0.7);  /* Semi-transparent background */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
