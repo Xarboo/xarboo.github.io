@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Egzaminy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              500: '#6366f1',
+            },
+            secondary: {
+              500: '#ec4899',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-gray-800 shadow-lg py-6 px-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-primary-500 flex items-center">
+        <i data-feather="navigation" class="mr-2"></i>
+        Robert - Egzaminy
+      </h1>
+
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="flex-grow container mx-auto px-4 py-12 flex flex-col items-center justify-center">
+    <div class="max-w-md w-full bg-gray-800 rounded-xl shadow-2xl p-8 space-y-6 transform transition-all hover:scale-105">
+      <h2 class="text-3xl font-bold text-center text-primary-500">nr.01.2025-09</h2>
+      <p class="text-gray-400 text-center">Pliki do pobrania</p>
+
+      <div class="space-y-4">
+
+        <!-- Php Button -->
+        <a href="Php/zdobywcy.php" class="block w-full">
+          <button class="w-full py-3 px-6 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg shadow-lg transition-all hover:shadow-xl flex items-center justify-center">
+            <i data-feather="compass" class="mr-2"></i>
+            Php
+          </button>
+        </a>
+
+        <!-- Multi-download Button -->
+        <button onclick="downloadFiles()" class="w-full py-3 px-6 bg-secondary-500 hover:bg-secondary-600 text-white font-semibold rounded-lg shadow-lg transition-all hover:shadow-xl flex items-center justify-center">
+          <i data-feather="trending-up" class="mr-2"></i>
+          Baza do pobrania
+        </button>
+
+      </div>
+
+      <div class="pt-6 border-t border-gray-700">
+        <p class="text-sm text-gray-500 text-center">
+          <i data-feather="info" class="inline mr-1"></i>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 py-4 px-4 shadow-inner">
+    <div class="container mx-auto text-center text-gray-500 text-sm">
+      Xar 2025-2030 © Copyright
+    </div>
+  </footer>
+
+  <!-- JS for downloading two files -->
+  <script>
+    function downloadFiles() {
+      const files = [
+        'Php/baza.sql',
+        'Kwerendy/kwerendy.txt'
+      ];
+
+      files.forEach(file => {
+        const a = document.createElement('a');
+        a.href = file;
+        a.download = '';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      });
+    }
+
+    // Load feather icons
+    feather.replace();
+  </script>
+</body>
+</html>
