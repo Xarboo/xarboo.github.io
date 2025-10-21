@@ -5,21 +5,27 @@ body {
     font-style: normal;
     margin: 0;
     padding: 0;
-    background: linear-gradient(-45deg, #2d00f7, #6a00f4, #8900f2, #a100f2, #b100e8, #bc00dd, #d100d1, #db00b6, #e500a4 , #f20089);
-    background-size: 400% 400%;
-    animation: gradientBG 8s ease infinite;
     cursor: crosshair;
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
 }
-@keyframes gradientBG {
-0% {background-position: 0% 50%;}
-50% {background-position: 100% 50%;}
-100% {background-position: 0% 50%;}
+
+#bgVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
 }
+
 main {
     max-width: 900px;
     margin: 20px auto;
     padding: 0 15px;
 }
+
 section {
     margin-bottom: 30px;
     background: white;
@@ -27,52 +33,58 @@ section {
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     border-radius: 6px;
 }
+
 .center-div {
-display: flex;
-justify-content: center;
-align-items: center;
-height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
 }
 
 .menu {
-text-align: center;
-background-color: hsla(177, 100%, 50%, 0.745);
-padding: 30px;
-border-radius: 10px;
-box-shadow: 0 10px 100px hsla(192, 100%, 71%, 0.67);
+    text-align: center;
+    background-color: hsla(177, 100%, 50%, 0.745);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 100px hsla(192, 100%, 71%, 0.67);
+    position: relative;
+    z-index: 1;
 }
 
 .menu a {
-display: block;
-margin: 10px 0;
-text-transform: capitalize;
-text-decoration: none;
-color: #460000;
-font-size: 25px;
-transition: color 0.3s;
+    display: block;
+    margin: 10px 0;
+    text-transform: capitalize;
+    text-decoration: none;
+    color: #460000;
+    font-size: 25px;
+    transition: color 0.3s;
 }
 
 .menu a:hover {
-color: #ff4c4c;
+    color: #ff4c4c;
 }
+
 .social-nav {
-position: absolute;
-top: 10px;
-left: 10px;
-display: flex;
-gap: 10px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
 }
 
 .social-nav a {
-color: #000000;
-font-size: 1.5em;
-text-decoration: none;
-transition: color 0.2s;
+    color: #000000;
+    font-size: 1.5em;
+    text-decoration: none;
+    transition: color 0.2s;
 }
 
 .social-nav a:hover {
-color: #00ff2a;
+    color: #00ff2a;
 }
+
 #clock {
     font-size: 2em;
     font-family: 'Kode Mono', monospace;
@@ -81,8 +93,11 @@ color: #00ff2a;
     top: 10px;     
     left: 50%;      
     transform: translateX(-50%); 
-    z-index: 1000;   
+    z-index: 1000;
+    color: white;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
 }
+
 #countdown {
     font-size: 3em;
     font-family: 'Kode Mono', monospace;
@@ -96,8 +111,6 @@ color: #00ff2a;
     left: 38%;
     text-align: center; 
     z-index: 1000;
-
-
 }
 
 @keyframes pulse {
