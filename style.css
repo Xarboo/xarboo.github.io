@@ -1,29 +1,42 @@
 body {
     font-family: "Kode Mono", monospace;
     font-optical-sizing: auto;
-    font-weight: 30px;
+    font-weight: 400;
     font-style: normal;
     margin: 0;
     padding: 0;
     cursor: crosshair;
     position: relative;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;   /* Umożliwia przewijanie strony */
+    overflow-y: auto;    /* Włączony scroll w pionie */
 }
 
-/* Background video sizing — full page cover */
+/* TŁO WIDEO — pełny ekran, nie przewija się */
 #bgVideo {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;        /* fill full viewport width */
-  height: 100vh;       /* fill full viewport height */
-  object-fit: cover;   /* preserve aspect ratio and cover viewport (may crop) */
-  object-position: center center;
-  z-index: -1;
-  pointer-events: none; /* allow clicks through the video */
-  display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center center;
+    z-index: -2;
+    pointer-events: none;
+    display: block;
 }
+
+/* OPCJONALNE PRZYCIEMNIENIE TŁA */
+#videoOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: -1;
+}
+
+/* Główna treść */
 main {
     max-width: 900px;
     margin: 20px auto;
@@ -42,7 +55,7 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; 
+    min-height: 100vh; 
 }
 
 .menu {
@@ -70,7 +83,7 @@ section {
 }
 
 .social-nav {
-    position: absolute;
+    position: fixed;
     top: 10px;
     left: 10px;
     display: flex;
@@ -107,12 +120,15 @@ section {
     font-family: 'Kode Mono', monospace;
     color: #ff0;
     font-weight: bold;
-    text-shadow: 0 0 20px rgba(255, 255, 0, 0.8), 0 0 30px rgba(255, 255, 0, 0.7), 0 0 40px rgba(255, 255, 0, 0.6);
+    text-shadow: 0 0 20px rgba(255, 255, 0, 0.8),
+                 0 0 30px rgba(255, 255, 0, 0.7),
+                 0 0 40px rgba(255, 255, 0, 0.6);
     letter-spacing: 2px;
     animation: pulse 1.5s ease-in-out infinite;
     position: fixed;
     bottom: 20px;
-    left: 38%;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center; 
     z-index: 1000;
 }
