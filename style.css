@@ -11,27 +11,42 @@ body {
     overflow: hidden;
 }
 
-/* Background video sizing — replace existing #bgVideo rules with this chunk */
+/* Background video sizing — full page cover */
+#bgVideo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;        /* fill full viewport width */
+  height: 100vh;       /* fill full viewport height */
+  object-fit: cover;   /* preserve aspect ratio and cover viewport (may crop) */
+  object-position: center center;
+  z-index: -1;
+  pointer-events: none; /* allow clicks through the video */
+  display: block;
+}
+
+/* OPTIONAL: use this block instead if you want a centered, smaller video
 #bgVideo {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* center the video */
-  width: 60vw;            /* change to 50vw / 40vw if you want it smaller on desktop */
-  height: auto;           /* preserve aspect ratio */
-  max-width: 1200px;      /* cap on very large screens */
-  max-height: 80vh;       /* don't exceed viewport height */
-  object-fit: cover;      /* use `contain` to avoid cropping */
+  transform: translate(-50%, -50%);  / * center the video * /
+  width: 60vw;            / * adjust to taste: 50vw / 40vw * /
+  height: auto;           / * preserve aspect ratio * /
+  max-width: 1200px;      / * cap on very large screens * /
+  max-height: 80vh;       / * don't exceed viewport height * /
+  object-fit: cover;      / * use `contain` to avoid cropping * /
   z-index: -1;
-  pointer-events: none;   /* allow clicks through the video */
+  pointer-events: none;
   display: block;
 }
+*/
 
-/* Prefer a smaller video on very large desktops */
-@media (min-width: 1200px) {
+/* Extra large displays */
+@media (min-width: 2000px) {
   #bgVideo {
-    width: 50vw;
-    max-width: 1000px;
+    max-width: 2500px;
+    max-height: 1600px;
   }
 }
 
@@ -39,13 +54,15 @@ body {
 @media (max-width: 600px) {
   #bgVideo {
     width: 100vw;
-    height: auto;
+    height: 50vh;       /* smaller height on phones to avoid covering all content */
     top: 0;
+    left: 50%;
     transform: translateX(-50%);
-    max-height: 50vh;
     object-fit: cover;
+    max-height: 50vh;
   }
 }
+
 main {
     max-width: 900px;
     margin: 20px auto;
