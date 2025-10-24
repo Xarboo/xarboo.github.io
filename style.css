@@ -24,45 +24,6 @@ body {
   pointer-events: none; /* allow clicks through the video */
   display: block;
 }
-
-/* OPTIONAL: use this block instead if you want a centered, smaller video
-#bgVideo {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);  / * center the video * /
-  width: 60vw;            / * adjust to taste: 50vw / 40vw * /
-  height: auto;           / * preserve aspect ratio * /
-  max-width: 1200px;      / * cap on very large screens * /
-  max-height: 80vh;       / * don't exceed viewport height * /
-  object-fit: cover;      / * use `contain` to avoid cropping * /
-  z-index: -1;
-  pointer-events: none;
-  display: block;
-}
-*/
-
-/* Extra large displays */
-@media (min-width: 2000px) {
-  #bgVideo {
-    max-width: 2500px;
-    max-height: 1600px;
-  }
-}
-
-/* Keep mobile from being overwhelmed by the video */
-@media (max-width: 600px) {
-  #bgVideo {
-    width: 100vw;
-    height: 50vh;       /* smaller height on phones to avoid covering all content */
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    object-fit: cover;
-    max-height: 50vh;
-  }
-}
-
 main {
     max-width: 900px;
     margin: 20px auto;
