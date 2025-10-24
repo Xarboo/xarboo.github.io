@@ -73,7 +73,7 @@ section {
     margin: 10px 0;
     text-transform: capitalize;
     text-decoration: none;
-    color: #460000;
+    color: hsl(295, 100%, 50%);
     font-size: 25px;
     transition: color 0.3s;
 }
