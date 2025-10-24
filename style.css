@@ -11,15 +11,41 @@ body {
     overflow: hidden;
 }
 
+/* Background video sizing — replace existing #bgVideo rules with this chunk */
 #bgVideo {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 80%;
-    min-height: 80%;
-    z-index: -1;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* center the video */
+  width: 60vw;            /* change to 50vw / 40vw if you want it smaller on desktop */
+  height: auto;           /* preserve aspect ratio */
+  max-width: 1200px;      /* cap on very large screens */
+  max-height: 80vh;       /* don't exceed viewport height */
+  object-fit: cover;      /* use `contain` to avoid cropping */
+  z-index: -1;
+  pointer-events: none;   /* allow clicks through the video */
+  display: block;
 }
 
+/* Prefer a smaller video on very large desktops */
+@media (min-width: 1200px) {
+  #bgVideo {
+    width: 50vw;
+    max-width: 1000px;
+  }
+}
+
+/* Keep mobile from being overwhelmed by the video */
+@media (max-width: 600px) {
+  #bgVideo {
+    width: 100vw;
+    height: auto;
+    top: 0;
+    transform: translateX(-50%);
+    max-height: 50vh;
+    object-fit: cover;
+  }
+}
 main {
     max-width: 900px;
     margin: 20px auto;
