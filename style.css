@@ -63,7 +63,7 @@ section {
     background-color: hsla(29, 100%, 53%, 0.745);
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 10px 100px hsla(192, 100%, 71%, 0.67);
+    box-shadow: 0 10px 100px hsla(29, 100%, 53%, 0.67);
     position: relative;
     z-index: 1;
 }
