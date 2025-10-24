@@ -73,13 +73,13 @@ section {
     margin: 10px 0;
     text-transform: capitalize;
     text-decoration: none;
-    color: hsl(295, 100%, 50%);
+    color: black;
     font-size: 25px;
     transition: color 0.3s;
 }
 
 .menu a:hover {
-    color: #ff4c4c;
+    color: hsl(295, 100%, 50%);
 }
 
 .social-nav {
