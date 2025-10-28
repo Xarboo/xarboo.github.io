@@ -1,144 +1,159 @@
 body {
-  margin: 0;
-  font-family: "Kode Mono", monospace;
-  overflow-y: auto;
-  min-height: 100vh;
-  color: white;
+margin: 0;
+font-family: "Kode Mono", monospace;
+overflow-y: auto;
+min-height: 100vh;
+color: white;
 }
 /* bgVideo */
 #bgVideo {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  z-index: -2;
-  pointer-events: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+object-fit: cover;
+z-index: -2;
+pointer-events: none;
 }
 
 /* Dark overlay */
 #overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.45);
-  z-index: -1;
+position: fixed;
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+background: rgba(0, 0, 0, 0.45);
+z-index: -1;
 }
 
 /* Centered menu */
 .center-div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  position: relative;
-  z-index: 0;
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
+position: relative;
+z-index: 0;
 }
 
 /* Frosted glass menu */
 menu {
-  background: rgba(255, 140, 0, 0.
-  border-radius: 12px;
-  padding: 30px 40px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
-  text-align: center;
-  position: relative;
-  z-index: 1; 
-  transition: background 200ms ease, box-shadow 200ms ease;
+background: rgba(255, 140, 0, 0.
+border-radius: 12px;
+padding: 30px 40px;
+box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+text-align: center;
+position: relative;
+z-index: 1; 
+transition: background 200ms ease, box-shadow 200ms ease;
 }
 @supports ((-webkit-backdrop-filter: blur(0)) or (backdrop-filter: blur(0))) {
-  .menu {
-    background: rgba(255, 255, 255, 0.06); 
-    -webkit-backdrop-filter: blur(8px); 
-    backdrop-filter: blur(8px);        
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
-  }
-  .menu.dark-frost {
-    background: rgba(10, 10, 10, 0.20);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-  }
+.menu {
+background: rgba(255, 255, 255, 0.06); 
+-webkit-backdrop-filter: blur(8px); 
+backdrop-filter: blur(8px);        
+border: 1px solid rgba(255, 255, 255, 0.12);
+box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+.menu.dark-frost {
+background: rgba(10, 10, 10, 0.20);
+border: 1px solid rgba(255, 255, 255, 0.06);
+}
 }
 
+/* Links inside menu */
+.menu a {
+display: block;
+margin: 10px 0;
+text-decoration: none;
+color: white;
+font-size: 24px;
+transition: color 0.3s;
+}
+
+.menu a:hover {
+color: #ff69ff;
+  font-size: 30px;
+  animation: 2s ease-in;
+}
 
 /* Social icons */
 .social-nav {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  display: flex;
-  gap: 15px;
-  font-size: 1.5em;
-  z-index: 10;
+position: fixed;
+top: 10px;
+left: 10px;
+display: flex;
+gap: 15px;
+font-size: 1.5em;
+z-index: 10;
 }
 
 .social-nav a {
-  text-decoration: none;
-  color: white;
-  transition: color 0.2s;
+text-decoration: none;
+color: white;
+transition: color 0.2s;
 }
 
 .social-nav a:hover {
-  color: #00ff2a;
+color: #00ff2a;
 }
 
 /* Clock and countdown */
 #clock {
-  position: fixed;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1.8em;
-  text-shadow: 0 0 8px cyan;
-  z-index: 10;
+position: fixed;
+top: 10px;
+left: 50%;
+transform: translateX(-50%);
+font-size: 1.8em;
+text-shadow: 0 0 8px cyan;
+z-index: 10;
 }
 
 #countdown {
-  position: fixed;
-  bottom: 25px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 2em;
-  color: #ff0;
-  text-shadow: 0 0 10px yellow;
-  font-weight: bold;
-  animation: pulse 1.5s infinite;
+position: fixed;
+bottom: 25px;
+left: 50%;
+transform: translateX(-50%);
+font-size: 2em;
+color: #ff0;
+text-shadow: 0 0 10px yellow;
+font-weight: bold;
+animation: pulse 1.5s infinite;
 }
 
 @keyframes pulse {
-  0%, 100% { transform: translateX(-50%) scale(1); }
-  50% { transform: translateX(-50%) scale(1.1); }
+0%, 100% { transform: translateX(-50%) scale(1); }
+50% { transform: translateX(-50%) scale(1.1); }
 }
 
 /* Mobile adjustments: reduce blur + compact layout */
 @media (max-width: 600px) {
-  .menu {
-    padding: 18px 22px;
-    margin: 20px;
-  }
-  .menu a {
-    font-size: 18px;
-  }
-  @supports ((-webkit-backdrop-filter: blur(0)) or (backdrop-filter: blur(0))) {
-    .menu { -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
-  }
+.menu {
+padding: 18px 22px;
+margin: 20px;
+}
+.menu a {
+font-size: 18px;
+}
+@supports ((-webkit-backdrop-filter: blur(0)) or (backdrop-filter: blur(0))) {
+.menu { -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+}
 }
 
 /* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-  }
+* {
+animation-duration: 0.001ms !important;
+animation-iteration-count: 1 !important;
+transition-duration: 0.001ms !important;
+}
 }
 
 /* Optional helper if you want the fallback solid color but keep a nicer look */
 .no-backdrop .menu {
-  /* use this class on <body> or root when you have JS detect no support */
-  background: rgba(255, 140, 0, 0.92);
-  box-shadow: 0 6px 20px rgba(255, 140, 0, 0.25);
+/* use this class on <body> or root when you have JS detect no support */
+background: rgba(255, 140, 0, 0.92);
+box-shadow: 0 6px 20px rgba(255, 140, 0, 0.25);
 }
