@@ -70,13 +70,15 @@ menu {
   text-decoration: none;
   color: white;
   font-size: 24px;
-  transition: color 0.3s;
+  transition: 
+    color 0.3s ease-in-out,
+    transform 0.3s ease-in-out; /* Smooth scaling animation */
 }
-
+/* Hover effect */
 .menu a:hover {
   color: #ff69ff;
+  transform: scale(1.1); /* Slightly enlarge text */
 }
-
 /* Social icons */
 .social-nav {
   position: fixed;
