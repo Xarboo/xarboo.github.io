@@ -29,39 +29,61 @@ body {
   z-index: -1;
 }
 
-/* Replace your existing .center-div styles (remove the orange background) with this.
-   Tweak blur radius, alpha values and radius to taste. */
-
+/* Centered menu */
 .center-div {
-  /* translucent background so backdrop-filter has something to work with */
-  background: rgba(255, 255, 255, 0.12); /* light frosted glass */
-  -webkit-backdrop-filter: blur(8px); /* Safari */
-  backdrop-filter: blur(8px);         /* modern browsers */
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.18); /* subtle outline */
-  box-shadow: 0 8px 30px rgba(10, 10, 10, 0.12);
-  /* keep the element's own content visible */
-  color: inherit;
-  /* layout helpers - keep existing layout rules if you already have them */
-  padding: 1.25rem;
-  /* ensure the element creates a stacking context for consistent rendering */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  /* ensure stacking context is predictable */
   position: relative;
-  z-index: 1;
+  z-index: 0;
 }
 
-/* Optional: darker frosted style if your page is light - use instead of the above background */
-.center-div.dark-frost {
-  background: rgba(10, 10, 10, 0.20);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+/* Frosted glass menu */
+/* Use feature query so we provide a fallback if backdrop-filter unsupported */
+.menu {
+  /* fallback solid-ish tint for very old browsers */
+  background: rgba(255, 140, 0, 0.9);
+
+  /* Default visual: try to use frosted glass when supported */
+  /* We'll override below inside @supports */
+
+  border-radius: 12px;
+  padding: 30px 40px;
+  /* softer shadow to keep focus on frosted background */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  text-align: center;
+  position: relative;
+  z-index: 1; /* ensure menu sits above fixed overlays */
+  transition: background 200ms ease, box-shadow 200ms ease;
 }
 
+/* Apply frosted glass when supported */
+@supports ((-webkit-backdrop-filter: blur(0)) or (backdrop-filter: blur(0))) {
+  .menu {
+    background: rgba(255, 255, 255, 0.06); /* subtle light tint that allows blur */
+    -webkit-backdrop-filter: blur(8px); /* Safari */
+    backdrop-filter: blur(8px);         /* modern browsers */
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  }
+
+  /* Optional darker variant (useful on very bright videos) */
+  .menu.dark-frost {
+    background: rgba(10, 10, 10, 0.20);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+}
+
+/* Links inside menu */
 .menu a {
   display: block;
   margin: 10px 0;
   text-decoration: none;
   color: white;
   font-size: 24px;
-  transition: 0.3s;
+  transition: color 0.3s;
 }
 
 .menu a:hover {
@@ -82,7 +104,7 @@ body {
 .social-nav a {
   text-decoration: none;
   color: white;
-  transition: 0.2s;
+  transition: color 0.2s;
 }
 
 .social-nav a:hover {
@@ -115,4 +137,34 @@ body {
 @keyframes pulse {
   0%, 100% { transform: translateX(-50%) scale(1); }
   50% { transform: translateX(-50%) scale(1.1); }
+}
+
+/* Mobile adjustments: reduce blur + compact layout */
+@media (max-width: 600px) {
+  .menu {
+    padding: 18px 22px;
+    margin: 20px;
+  }
+  .menu a {
+    font-size: 18px;
+  }
+  @supports ((-webkit-backdrop-filter: blur(0)) or (backdrop-filter: blur(0))) {
+    .menu { -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Optional helper if you want the fallback solid color but keep a nicer look */
+.no-backdrop .menu {
+  /* use this class on <body> or root when you have JS detect no support */
+  background: rgba(255, 140, 0, 0.92);
+  box-shadow: 0 6px 20px rgba(255, 140, 0, 0.25);
 }
