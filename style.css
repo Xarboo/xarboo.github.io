@@ -54,13 +54,6 @@ body {
   background: rgba(10, 10, 10, 0.20);
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
-.menu {
-  background: rgba(255, 140, 0, 0.8);
-  border-radius: 12px;
-  padding: 30px 40px;
-  box-shadow: 0 0 30px rgba(255, 140, 0, 0.5);
-  text-align: center;
-}
 
 .menu a {
   display: block;
