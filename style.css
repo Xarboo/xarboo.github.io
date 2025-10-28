@@ -29,14 +29,31 @@ body {
   z-index: -1;
 }
 
-/* Centered menu */
+/* Replace your existing .center-div styles (remove the orange background) with this.
+   Tweak blur radius, alpha values and radius to taste. */
+
 .center-div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  /* translucent background so backdrop-filter has something to work with */
+  background: rgba(255, 255, 255, 0.12); /* light frosted glass */
+  -webkit-backdrop-filter: blur(8px); /* Safari */
+  backdrop-filter: blur(8px);         /* modern browsers */
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18); /* subtle outline */
+  box-shadow: 0 8px 30px rgba(10, 10, 10, 0.12);
+  /* keep the element's own content visible */
+  color: inherit;
+  /* layout helpers - keep existing layout rules if you already have them */
+  padding: 1.25rem;
+  /* ensure the element creates a stacking context for consistent rendering */
+  position: relative;
+  z-index: 1;
 }
 
+/* Optional: darker frosted style if your page is light - use instead of the above background */
+.center-div.dark-frost {
+  background: rgba(10, 10, 10, 0.20);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
 .menu {
   background: rgba(255, 140, 0, 0.8);
   border-radius: 12px;
