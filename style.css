@@ -5,8 +5,7 @@ body {
   min-height: 100vh;
   color: white;
 }
-
-/* Video background */
+/* bgVideo */
 #bgVideo {
   position: fixed;
   top: 0;
@@ -35,41 +34,29 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  /* ensure stacking context is predictable */
   position: relative;
   z-index: 0;
 }
 
 /* Frosted glass menu */
-/* Use feature query so we provide a fallback if backdrop-filter unsupported */
-.menu {
-  /* fallback solid-ish tint for very old browsers */
-  background: rgba(255, 140, 0, 0.9);
-
-  /* Default visual: try to use frosted glass when supported */
-  /* We'll override below inside @supports */
-
+menu {
+  background: rgba(255, 140, 0, 0.
   border-radius: 12px;
   padding: 30px 40px;
-  /* softer shadow to keep focus on frosted background */
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
   text-align: center;
   position: relative;
-  z-index: 1; /* ensure menu sits above fixed overlays */
+  z-index: 1; 
   transition: background 200ms ease, box-shadow 200ms ease;
 }
-
-/* Apply frosted glass when supported */
 @supports ((-webkit-backdrop-filter: blur(0)) or (backdrop-filter: blur(0))) {
   .menu {
-    background: rgba(255, 255, 255, 0.06); /* subtle light tint that allows blur */
-    -webkit-backdrop-filter: blur(8px); /* Safari */
-    backdrop-filter: blur(8px);         /* modern browsers */
+    background: rgba(255, 255, 255, 0.06); 
+    -webkit-backdrop-filter: blur(8px); 
+    backdrop-filter: blur(8px);        
     border: 1px solid rgba(255, 255, 255, 0.12);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
   }
-
-  /* Optional darker variant (useful on very bright videos) */
   .menu.dark-frost {
     background: rgba(10, 10, 10, 0.20);
     border: 1px solid rgba(255, 255, 255, 0.06);
@@ -88,6 +75,8 @@ body {
 
 .menu a:hover {
   color: #ff69ff;
+  font-size: 30px;
+  animation: 2s ease-in;
 }
 
 /* Social icons */
