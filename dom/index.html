@@ -89,12 +89,26 @@
         }
         .card .row{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
         .muted{ color:var(--muted); font-size:14px; }
+
+        /* Slider styles */
+        .slider-wrap{ display:flex; flex-direction:column; gap:10px; }
+        .slider{ position:relative; overflow:hidden; border-radius:8px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); }
+        .slides{ display:flex; transition: transform 400ms cubic-bezier(.2,.9,.2,1); will-change: transform; }
+        .slide{ min-width:100%; padding:28px; box-sizing:border-box; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px; height:180px; color:#09202a; font-weight:800; border-radius:6px; }
+        .slide .caption{ color:#073042; font-weight:700; font-size:18px; }
+        .slider-controls{ position:absolute; top:50%; left:0; right:0; display:flex; justify-content:space-between; transform:translateY(-50%); padding:0 8px; pointer-events:none; }
+        .slider-controls button{ pointer-events:auto; background:rgba(0,0,0,0.32); border:none; color:#fff; padding:8px 10px; border-radius:6px; }
+        .dots{ display:flex; gap:6px; justify-content:center; padding:8px 0; }
+        .dot{ width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.12); cursor:pointer; }
+        .dot.active{ background:var(--accent); box-shadow:0 3px 8px rgba(6,182,212,0.18); }
+        .playstate{ font-size:13px; color:var(--muted); }
+        @media (min-width:900px){ .slide{ height:220px; } }
     </style>
 </head>
 <body>
     <div class="wrap">
         <h1>Przykłady manipulacji DOM</h1>
-        <p class="lead">Trzy krótkie, interaktywne skrypty pokazujące: tworzenie/wstawianie elementów, węzły tekstowe oraz template + klonowanie.</p>
+        <p class="lead">Trzy krótkie, interaktywne skrypty pokazujące: tworzenie/wstawianie elementów, węzły tekstowe oraz template + klonowanie. Dodano też prosty slider.</p>
 
         <div class="grid">
 
@@ -157,6 +171,46 @@
                         </div>
                     </div>
                 </template>
+            </section>
+
+            <!-- 4. Slider -->
+            <section class="card" id="section-slider">
+                <h2>4. Prosty slider (JS)</h2>
+                <div class="controls">
+                    <button class="btn" id="prevSlide">‹ Poprzedni</button>
+                    <button class="btn" id="nextSlide">Następny ›</button>
+                    <button class="btn ghost" id="toggleAutoplay">Pauza</button>
+                </div>
+
+                <div class="example-area slider-wrap">
+                    <div class="slider" id="slider" aria-roledescription="carousel">
+                        <div class="slides">
+                            <div class="slide" style="background:linear-gradient(135deg,#ffd194,#f6a5ff);">
+                                <div class="label">Slajd 1</div>
+                                <div class="caption">Witaj w sliderze</div>
+                            </div>
+                            <div class="slide" style="background:linear-gradient(135deg,#a8ff78,#78ffd6);">
+                                <div class="label">Slajd 2</div>
+                                <div class="caption">Można przewijać ręcznie lub automatycznie</div>
+                            </div>
+                            <div class="slide" style="background:linear-gradient(135deg,#9be7ff,#7a6fff);">
+                                <div class="label">Slajd 3</div>
+                                <div class="caption">Obsługa klawiatury i pauzy po najechaniu</div>
+                            </div>
+                        </div>
+                        <div class="slider-controls">
+                            <button id="btnPrev" aria-label="Poprzedni">◀</button>
+                            <button id="btnNext" aria-label="Następny">▶</button>
+                        </div>
+                    </div>
+
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                        <div class="dots" id="dots"></div>
+                        <div class="playstate" id="playState">autoplay: on</div>
+                    </div>
+                </div>
+
+                <div class="note">Slider jest prosty, nie wymaga żadnych zewnętrznych bibliotek. Pauzuje na hover i reaguje na strzałki.</div>
             </section>
 
         </div>
@@ -330,6 +384,98 @@
                     if (cardWrap) cardWrap.remove();
                 }
             });
+        })();
+
+        // ----------------------------
+        // 4) Slider (prosty)
+        // ----------------------------
+        (function(){
+            const slider = document.getElementById('slider');
+            const slidesContainer = slider.querySelector('.slides');
+            const slides = Array.from(slidesContainer.children);
+            const prevBtn = document.getElementById('prevSlide');
+            const nextBtn = document.getElementById('nextSlide');
+            const btnPrev = document.getElementById('btnPrev');
+            const btnNext = document.getElementById('btnNext');
+            const toggleAutoplay = document.getElementById('toggleAutoplay');
+            const dotsWrap = document.getElementById('dots');
+            const playState = document.getElementById('playState');
+
+            let index = 0;
+            let autoplay = true;
+            let interval = null;
+            const AUTOPLAY_DELAY = 3000;
+
+            function update(){
+                slidesContainer.style.transform = `translateX(-${index * 100}%)`;
+                // update dots
+                dotsWrap.querySelectorAll('.dot').forEach((d,i)=> d.classList.toggle('active', i===index));
+            }
+
+            function go(n){
+                index = (n + slides.length) % slides.length;
+                update();
+            }
+            function next(){ go(index+1); }
+            function prev(){ go(index-1); }
+
+            // dots
+            slides.forEach((s,i)=>{
+                const dot = document.createElement('button');
+                dot.className = 'dot';
+                dot.title = 'Przejdź do slajdu ' + (i+1);
+                dot.addEventListener('click', ()=> go(i));
+                dotsWrap.appendChild(dot);
+            });
+
+            // buttons
+            [prevBtn, btnPrev].forEach(b=> b && b.addEventListener('click', prev));
+            [nextBtn, btnNext].forEach(b=> b && b.addEventListener('click', next));
+
+            // autoplay
+            function startAutoplay(){
+                stopAutoplay();
+                interval = setInterval(next, AUTOPLAY_DELAY);
+                autoplay = true;
+                toggleAutoplay.textContent = 'Pauza';
+                playState.textContent = 'autoplay: on';
+            }
+            function stopAutoplay(){
+                if (interval) clearInterval(interval);
+                interval = null;
+                autoplay = false;
+                toggleAutoplay.textContent = 'Start';
+                playState.textContent = 'autoplay: off';
+            }
+
+            toggleAutoplay.addEventListener('click', ()=>{
+                if (autoplay) stopAutoplay(); else startAutoplay();
+            });
+
+            // pause on hover
+            slider.addEventListener('mouseenter', () => { if (autoplay) stopAutoplay(); });
+            slider.addEventListener('mouseleave', () => { if (!autoplay) startAutoplay(); });
+
+            // keyboard
+            window.addEventListener('keydown', (e)=>{
+                if (e.key === 'ArrowLeft') prev();
+                if (e.key === 'ArrowRight') next();
+            });
+
+            // touch support (simple)
+            (function(){
+                let startX = 0, dx = 0;
+                slider.addEventListener('touchstart',(e)=> startX = e.touches[0].clientX);
+                slider.addEventListener('touchmove',(e)=> { dx = e.touches[0].clientX - startX; });
+                slider.addEventListener('touchend', ()=> {
+                    if (Math.abs(dx) > 40){ if (dx < 0) next(); else prev(); }
+                    startX = dx = 0;
+                });
+            })();
+
+            // init
+            go(0);
+            startAutoplay();
         })();
     </script>
 </body>
