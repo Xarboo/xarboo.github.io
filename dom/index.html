@@ -1,11 +1,336 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>DOM — przykłady</title>
+    <style>
+        :root{
+            --bg: #0f1724;
+            --card: #0b1220;
+            --accent: #06b6d4;
+            --muted: #94a3b8;
+            --btn-bg: linear-gradient(135deg,#06b6d4,#7c3aed);
+        }
+        body{
+            font-family: Inter, Roboto, system-ui, Arial, sans-serif;
+            background: linear-gradient(180deg,#071126 0%, #071a2a 60%);
+            color: #e6eef8;
+            margin: 0;
+            padding: 32px;
+        }
+        .wrap{
+            max-width: 940px;
+            margin: 0 auto;
+        }
+        h1{
+            margin: 0 0 14px;
+            font-size: 22px;
+            color: #fff;
+        }
+        p.lead{ color: var(--muted); margin-top:4px; margin-bottom:18px; }
+
+        .grid{
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+            gap: 18px;
+        }
+        .card{
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.04);
+            padding: 14px;
+            border-radius: 10px;
+            box-shadow: 0 6px 18px rgba(2,6,23,0.5);
+        }
+        .card h2{ margin: 0 0 8px; font-size: 16px; color: #fff; }
+        .controls{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+
+        .btn{
+            appearance: none;
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            background: var(--btn-bg);
+            box-shadow: 0 6px 14px rgba(124,58,237,0.18);
+            transition: transform .12s ease, filter .12s ease;
+        }
+        .btn:active{ transform: translateY(1px) scale(.995); }
+        .btn.ghost{
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.06);
+            color: var(--muted);
+            box-shadow: none;
+        }
+        .example-area{
+            padding: 12px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+            border-radius: 8px;
+            min-height: 60px;
+        }
+        .element{
+            display:inline-block;
+            padding:8px 10px;
+            border-radius:6px;
+            margin:6px;
+            font-weight:700;
+            box-shadow: 0 4px 10px rgba(2,6,23,0.45);
+        }
+        .test-cnt strong{ display:inline-block; margin:6px; padding:6px 8px; background:rgba(255,255,255,0.03); border-radius:6px; color:var(--muted); }
+
+        .card .note{ font-size:13px; color:var(--muted); margin-top:8px; }
+        .template-card{
+            padding:10px;
+            border-radius:8px;
+            background:linear-gradient(180deg,#061426,#071a2a);
+            border:1px solid rgba(255,255,255,0.03);
+        }
+        .card .row{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+        .muted{ color:var(--muted); font-size:14px; }
+    </style>
 </head>
 <body>
-    
+    <div class="wrap">
+        <h1>Przykłady manipulacji DOM</h1>
+        <p class="lead">Trzy krótkie, interaktywne skrypty pokazujące: tworzenie/wstawianie elementów, węzły tekstowe oraz template + klonowanie.</p>
+
+        <div class="grid">
+
+            <!-- 1. Tworzenie i wstawianie elementów -->
+            <section class="card" id="section-create">
+                <h2>1. Tworzenie & wstawianie elementów</h2>
+                <div class="controls">
+                    <button class="btn" id="btn-append">Dodaj (appendChild)</button>
+                    <button class="btn" id="btn-insertBefore">Wstaw przed 2. &lt;strong&gt;</button>
+                    <button class="btn ghost" id="btn-prepend">Prepend (nowa metoda)</button>
+                    <button class="btn ghost" id="btn-after">After (nowa metoda)</button>
+                </div>
+
+                <div class="example-area">
+                    <div class="test-cnt" style="padding:8px;">
+                        <strong>strong</strong>
+                        <strong>strong</strong>
+                    </div>
+                </div>
+                <div class="note">Elementy otrzymują losowy kolor (HSL). Przykład pokazuje klasyczne metody oraz nowe (append/prepend/after).</div>
+            </section>
+
+            <!-- 2. Węzły tekstowe (createTextNode) -->
+            <section class="card" id="section-textnode">
+                <h2>2. Węzły tekstowe (createTextNode)</h2>
+                <div class="controls">
+                    <button class="btn" id="btn-changeWords">Zmień słowa</button>
+                    <button class="btn ghost" id="btn-resetWords">Reset</button>
+                </div>
+
+                <div class="example-area">
+                    <p id="testNodeText" style="font-size:16px;"> <!-- zostanie wypełnione przez skrypt --> </p>
+                </div>
+                <div class="note">Słowa utworzone są jako węzły tekstowe — łatwo je potem zamieniać bez dodawania dodatkowych elementów.</div>
+            </section>
+
+            <!-- 3. Template i klonowanie -->
+            <section class="card" id="section-template">
+                <h2>3. Template & klonowanie</h2>
+                <div class="controls">
+                    <button class="btn" id="btn-clone-noevents">Klonuj (bez eventów)</button>
+                    <button class="btn" id="btn-clone-withevents">Klonuj (podczep eventy)</button>
+                    <button class="btn ghost" id="btn-clearClones">Usuń wszystkie</button>
+                </div>
+
+                <div class="example-area">
+                    <div class="target"></div>
+                </div>
+
+                <div class="note">Klonując elementy zdarzenia nie są kopiowane. Przyciski "Klonuj (podczep eventy)" rejestrują akcję ręcznie.</div>
+
+                <!-- template (nieparsowany przez przeglądarkę) -->
+                <template id="cardTemplate">
+                    <div class="template-card">
+                        <h3 class="card-title">Karta — <span class="num"></span></h3>
+                        <p class="card-text">Przykładowy opis. Ta karta ma przycisk z akcją.</p>
+                        <div class="row">
+                            <button class="btn btn-card-action" type="button">Akcja</button>
+                            <button class="btn ghost btn-remove">Usuń</button>
+                        </div>
+                    </div>
+                </template>
+            </section>
+
+        </div>
+    </div>
+
+    <script>
+        // ----------------------------
+        // 1) Tworzenie i wstawianie
+        // ----------------------------
+        (function(){
+            let counter = 0;
+            const appendBtn = document.getElementById('btn-append');
+            const insertBeforeBtn = document.getElementById('btn-insertBefore');
+            const prependBtn = document.getElementById('btn-prepend');
+            const afterBtn = document.getElementById('btn-after');
+            const container = document.querySelector('.test-cnt');
+
+            function makeEl(text){
+                const el = document.createElement('div');
+                el.classList.add('element');
+                el.style.background = `hsl(${Math.random()*360},90%,70%)`;
+                el.style.color = '#102027';
+                el.textContent = text;
+                return el;
+            }
+
+            appendBtn.addEventListener('click', () => {
+                const el = makeEl(`Nowy ${++counter}`);
+                // klasyczna metoda - appendChild
+                container.appendChild(el);
+            });
+
+            insertBeforeBtn.addEventListener('click', () => {
+                const el = makeEl(`Wstawiony ${++counter}`);
+                const strongs = container.querySelectorAll('strong');
+                const second = strongs[1] ?? null;
+                // jeśli nie ma drugiego strong - dodaj na koniec
+                if (second) {
+                    container.insertBefore(el, second);
+                } else {
+                    container.appendChild(el);
+                }
+            });
+
+            prependBtn.addEventListener('click', () => {
+                const el = makeEl(`Na początku ${++counter}`);
+                // nowa metoda - prepend (wstawia element/text na początek)
+                container.prepend(el);
+            });
+
+            afterBtn.addEventListener('click', () => {
+                const el = makeEl(`Za kontenerem ${++counter}`);
+                // wstawia element za kontenerem
+                container.after(el);
+            });
+        })();
+
+        // ----------------------------
+        // 2) createTextNode
+        // ----------------------------
+        (function(){
+            const p = document.getElementById('testNodeText');
+            const btn = document.getElementById('btn-changeWords');
+            const btnReset = document.getElementById('btn-resetWords');
+
+            // tworzymy dwa węzły tekstu, które będziemy zmieniać
+            const word1 = document.createTextNode("Psy");
+            const middle = document.createTextNode(" są ");
+            const word2 = document.createTextNode("fajne");
+
+            // ustawiamy zawartość paragrafu (append działa też z węzłami tekstowymi)
+            p.appendChild(word1);
+            p.appendChild(middle);
+            p.appendChild(word2);
+
+            let toggled = false;
+            btn.addEventListener('click', () => {
+                // pokazujemy, że mamy bezpośredni dostęp do węzła tekstowego
+                if (!toggled) {
+                    word1.textContent = "Koty też";
+                    word2.textContent = "super!";
+                    toggled = true;
+                } else {
+                    word1.textContent = "Psy";
+                    word2.textContent = "fajne";
+                    toggled = false;
+                }
+            });
+
+            btnReset.addEventListener('click', () => {
+                word1.textContent = "Psy";
+                word2.textContent = "fajne";
+                toggled = false;
+            });
+        })();
+
+        // ----------------------------
+        // 3) Template i klonowanie
+        // ----------------------------
+        (function(){
+            const template = document.getElementById('cardTemplate');
+            const target = document.querySelector('.target');
+            const cloneNoEventsBtn = document.getElementById('btn-clone-noevents');
+            const cloneWithEventsBtn = document.getElementById('btn-clone-withevents');
+            const clearBtn = document.getElementById('btn-clearClones');
+            let cardCount = 0;
+
+            // funkcja tworząca klon (node) i zwracająca go
+            function createClone(){
+                if (!('content' in document.createElement('template'))) {
+                    // fallback: użyj innerHTML
+                    const frag = document.createElement('div');
+                    frag.innerHTML = template.innerHTML;
+                    return frag;
+                }
+                const clone = template.content.cloneNode(true);
+                // ustaw numerki
+                const num = clone.querySelector('.num');
+                if (num) num.textContent = ++cardCount;
+                return clone;
+            }
+
+            // opcja 1: klonuj i wstaw — bez podpinania eventów (pokaz problemu)
+            cloneNoEventsBtn.addEventListener('click', () => {
+                const clone = createClone();
+                target.appendChild(clone);
+                // uwaga: przycisk wewnątrz klonu nie będzie miał przypiętego eventu automatycznie
+            });
+
+            // opcja 2: klonuj i ręcznie przypnij eventy
+            cloneWithEventsBtn.addEventListener('click', () => {
+                const clone = createClone();
+                // gdy sklonujemy content, otrzymamy DocumentFragment - musimy znaleźć właściwy element
+                // więc opakowujemy w div, by móc łatwo pracować z elementami
+                const wrapper = document.createElement('div');
+                wrapper.appendChild(clone);
+                // znajdź przycisk i dodaj event
+                const btn = wrapper.querySelector('.btn-card-action');
+                const removeBtn = wrapper.querySelector('.btn-remove');
+
+                if (btn) {
+                    btn.addEventListener('click', () => {
+                        alert('Kliknąłeś przycisk Akcja na karcie #' + wrapper.querySelector('.num').textContent);
+                    });
+                }
+                if (removeBtn) {
+                    removeBtn.addEventListener('click', () => {
+                        wrapper.remove();
+                    });
+                }
+                // wstaw gotowy wrapper (z eventami)
+                target.appendChild(wrapper);
+            });
+
+            // usuń wszystkie sklonowane elementy
+            clearBtn.addEventListener('click', () => {
+                // łatwo: wyczyść target
+                target.innerHTML = '';
+                cardCount = 0;
+            });
+
+            // delegacja: zamontuj prostą delegację, by pokazać że można też "obsłużyć" eventy bez podczepiania do każdego elementu
+            target.addEventListener('click', (e) => {
+                if (e.target.matches('.btn-card-action')) {
+                    // jeśli zdarzenie nie miało listenera, to i tak można reagować przez delegację
+                    const card = e.target.closest('.template-card');
+                    const num = card ? card.querySelector('.num')?.textContent : '(?)';
+                    alert('Delegacja: Akcja na karcie #' + (num ?? '(?)'));
+                } else if (e.target.matches('.btn-remove')) {
+                    const cardWrap = e.target.closest('.template-card') || e.target.closest('div');
+                    if (cardWrap) cardWrap.remove();
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
