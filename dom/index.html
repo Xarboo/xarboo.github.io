@@ -3,59 +3,69 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>DOM — przykłady</title>
+    <title>DOM — przykłady (Vibrant + Lightbox)</title>
     <style>
         :root{
-            --bg: #0f1724;
-            --card: #0b1220;
-            --accent: #06b6d4;
-            --muted: #94a3b8;
-            --btn-bg: linear-gradient(135deg,#06b6d4,#7c3aed);
+            --bg: linear-gradient(180deg,#040712 0%, #07102b 60%);
+            --card: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+            --accent: #00f0ff;
+            --accent-2: #a855f7;
+            --muted: #9fb4c9;
+            --btn-bg: linear-gradient(135deg,var(--accent),var(--accent-2));
+            --glass: rgba(255,255,255,0.04);
+            --neon: 0 6px 24px rgba(124,58,237,0.22), 0 0 30px rgba(6,182,212,0.06);
         }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        *{ box-sizing: border-box; }
         body{
             font-family: Inter, Roboto, system-ui, Arial, sans-serif;
-            background: linear-gradient(180deg,#071126 0%, #071a2a 60%);
-            color: #e6eef8;
+            background: var(--bg);
+            color: #eaf6ff;
             margin: 0;
             padding: 32px;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
         }
         .wrap{
-            max-width: 940px;
+            max-width: 1100px;
             margin: 0 auto;
         }
         h1{
-            margin: 0 0 14px;
-            font-size: 22px;
+            margin: 0 0 8px;
+            font-size: 26px;
             color: #fff;
+            letter-spacing: -0.02em;
         }
-        p.lead{ color: var(--muted); margin-top:4px; margin-bottom:18px; }
+        p.lead{ color: var(--muted); margin-top:4px; margin-bottom:20px; font-size:15px; }
 
         .grid{
             display: grid;
-            grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+            grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
             gap: 18px;
         }
         .card{
-            background: rgba(255,255,255,0.03);
+            background: var(--card);
             border: 1px solid rgba(255,255,255,0.04);
-            padding: 14px;
-            border-radius: 10px;
-            box-shadow: 0 6px 18px rgba(2,6,23,0.5);
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+            transition: transform .16s ease, box-shadow .16s ease;
         }
-        .card h2{ margin: 0 0 8px; font-size: 16px; color: #fff; }
-        .controls{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+        .card:hover{ transform: translateY(-6px); box-shadow: var(--neon); }
+        .card h2{ margin: 0 0 10px; font-size: 18px; color: #fff; }
+        .controls{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px; }
 
         .btn{
             appearance: none;
             border: none;
             color: white;
-            padding: 8px 12px;
-            border-radius: 8px;
+            padding: 8px 14px;
+            border-radius: 10px;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 700;
             background: var(--btn-bg);
-            box-shadow: 0 6px 14px rgba(124,58,237,0.18);
-            transition: transform .12s ease, filter .12s ease;
+            box-shadow: var(--neon);
+            transition: transform .12s ease, filter .12s ease, box-shadow .12s ease;
         }
         .btn:active{ transform: translateY(1px) scale(.995); }
         .btn.ghost{
@@ -65,50 +75,83 @@
             box-shadow: none;
         }
         .example-area{
-            padding: 12px;
+            padding: 14px;
             background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
-            border-radius: 8px;
-            min-height: 60px;
+            border-radius: 10px;
+            min-height: 74px;
+            border: 1px solid rgba(255,255,255,0.02);
         }
         .element{
             display:inline-block;
-            padding:8px 10px;
-            border-radius:6px;
-            margin:6px;
-            font-weight:700;
-            box-shadow: 0 4px 10px rgba(2,6,23,0.45);
-        }
-        .test-cnt strong{ display:inline-block; margin:6px; padding:6px 8px; background:rgba(255,255,255,0.03); border-radius:6px; color:var(--muted); }
-
-        .card .note{ font-size:13px; color:var(--muted); margin-top:8px; }
-        .template-card{
-            padding:10px;
+            padding:10px 12px;
             border-radius:8px;
-            background:linear-gradient(180deg,#061426,#071a2a);
+            margin:6px;
+            font-weight:800;
+            box-shadow: 0 8px 20px rgba(2,6,23,0.55);
+            color: #05141a;
+        }
+        .test-cnt strong{ display:inline-block; margin:6px; padding:6px 10px; background:rgba(255,255,255,0.03); border-radius:8px; color:var(--muted); }
+
+        .card .note{ font-size:13px; color:var(--muted); margin-top:10px; }
+        .template-card{
+            padding:12px;
+            border-radius:10px;
+            background: linear-gradient(180deg,#021427,#071a2a);
             border:1px solid rgba(255,255,255,0.03);
         }
-        .card .row{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+        .card .row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
         .muted{ color:var(--muted); font-size:14px; }
 
         /* Slider styles */
         .slider-wrap{ display:flex; flex-direction:column; gap:10px; }
-        .slider{ position:relative; overflow:hidden; border-radius:8px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); }
-        .slides{ display:flex; transition: transform 400ms cubic-bezier(.2,.9,.2,1); will-change: transform; }
-        .slide{ min-width:100%; padding:28px; box-sizing:border-box; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px; height:180px; color:#09202a; font-weight:800; border-radius:6px; }
-        .slide .caption{ color:#073042; font-weight:700; font-size:18px; }
+        .slider{ position:relative; overflow:hidden; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.02); }
+        .slides{ display:flex; transition: transform 420ms cubic-bezier(.2,.9,.2,1); will-change: transform; }
+        .slide{ min-width:100%; padding:28px; box-sizing:border-box; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px; height:200px; color:#072b34; font-weight:700; border-radius:10px; }
+        .slide .caption{ color:#073042; font-weight:800; font-size:18px; text-shadow: 0 2px 8px rgba(255,255,255,0.06); }
         .slider-controls{ position:absolute; top:50%; left:0; right:0; display:flex; justify-content:space-between; transform:translateY(-50%); padding:0 8px; pointer-events:none; }
-        .slider-controls button{ pointer-events:auto; background:rgba(0,0,0,0.32); border:none; color:#fff; padding:8px 10px; border-radius:6px; }
+        .slider-controls button{ pointer-events:auto; background:rgba(0,0,0,0.32); border:none; color:#fff; padding:8px 10px; border-radius:8px; }
         .dots{ display:flex; gap:6px; justify-content:center; padding:8px 0; }
-        .dot{ width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.12); cursor:pointer; }
-        .dot.active{ background:var(--accent); box-shadow:0 3px 8px rgba(6,182,212,0.18); }
-        .playstate{ font-size:13px; color:var(--muted); }
-        @media (min-width:900px){ .slide{ height:220px; } }
+        .dot{ width:12px; height:12px; border-radius:50%; background:rgba(255,255,255,0.12); cursor:pointer; border:1px solid rgba(255,255,255,0.03); }
+        .dot.active{ background:var(--accent); box-shadow:0 5px 14px rgba(6,182,212,0.18); }
+
+        /* Lightbox */
+        .gallery{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+        .thumb{
+            width:160px; height:100px; border-radius:8px; overflow:hidden; cursor:pointer;
+            flex: 0 0 auto; position:relative; border:2px solid rgba(255,255,255,0.03);
+            box-shadow: 0 8px 18px rgba(2,6,23,0.45);
+            transition: transform .14s ease, box-shadow .14s ease;
+        }
+        .thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+        .thumb:hover{ transform: translateY(-6px) scale(1.02); box-shadow: var(--neon); }
+        .thumb .caption{ position:absolute; left:8px; bottom:8px; color:#fff; font-weight:700; text-shadow:0 2px 12px rgba(0,0,0,0.6); font-size:13px; }
+
+        .lightbox{
+            position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:9999;
+            background: linear-gradient(to bottom right, rgba(2,6,23,0.85), rgba(3,8,37,0.95));
+            padding:28px;
+        }
+        .lightbox.open{ display:flex; }
+        .lb-content{ max-width:1100px; width:100%; max-height:88vh; display:flex; gap:20px; align-items:center; justify-content:center; }
+        .lb-img-wrap{ flex:1 1 auto; display:flex; align-items:center; justify-content:center; }
+        .lb-img{ max-width:100%; max-height:80vh; border-radius:10px; box-shadow: 0 18px 60px rgba(6,26,40,0.75); }
+        .lb-sidebar{ width:320px; max-width:34%; display:flex; flex-direction:column; gap:12px; color:var(--muted); }
+        .lb-title{ color:#fff; font-weight:800; font-size:20px; margin-bottom:6px; }
+        .lb-controls{ display:flex; gap:8px; margin-top:auto; }
+        .lb-btn{ background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.03); color:var(--muted); padding:8px 12px; border-radius:8px; cursor:pointer; }
+        .lb-close{ position:absolute; top:18px; right:18px; background:transparent; border:1px solid rgba(255,255,255,0.06); color:#fff; padding:8px 10px; border-radius:10px; cursor:pointer; }
+
+        @media (max-width:900px){
+            .lb-sidebar{ display:none; }
+            .lb-img{ max-height:68vh; }
+            .thumb{ width:48%; height:110px; }
+        }
     </style>
 </head>
 <body>
     <div class="wrap">
-        <h1>Przykłady manipulacji DOM</h1>
-        <p class="lead">Trzy krótkie, interaktywne skrypty pokazujące: tworzenie/wstawianie elementów, węzły tekstowe oraz template + klonowanie. Dodano też prosty slider.</p>
+        <h1>Przykłady manipulacji DOM — Vibrant</h1>
+        <p class="lead">Zaktualizowano wygląd na bardziej żywy, dodano lekki neonowy akcent. Na końcu znajduje się prosty, dostępny lightbox — kliknij miniaturę, aby zobaczyć pełne zdjęcie.</p>
 
         <div class="grid">
 
@@ -118,8 +161,8 @@
                 <div class="controls">
                     <button class="btn" id="btn-append">Dodaj (appendChild)</button>
                     <button class="btn" id="btn-insertBefore">Wstaw przed 2. &lt;strong&gt;</button>
-                    <button class="btn ghost" id="btn-prepend">Prepend (nowa metoda)</button>
-                    <button class="btn ghost" id="btn-after">After (nowa metoda)</button>
+                    <button class="btn ghost" id="btn-prepend">Prepend</button>
+                    <button class="btn ghost" id="btn-after">After</button>
                 </div>
 
                 <div class="example-area">
@@ -128,7 +171,7 @@
                         <strong>strong</strong>
                     </div>
                 </div>
-                <div class="note">Elementy otrzymują losowy kolor (HSL). Przykład pokazuje klasyczne metody oraz nowe (append/prepend/after).</div>
+                <div class="note">Elementy otrzymują losowy, energetyczny kolor (HSL). Przykład pokazuje klasyczne metody oraz nowe (append/prepend/after).</div>
             </section>
 
             <!-- 2. Węzły tekstowe (createTextNode) -->
@@ -160,7 +203,6 @@
 
                 <div class="note">Klonując elementy zdarzenia nie są kopiowane. Przyciski "Klonuj (podczep eventy)" rejestrują akcję ręcznie.</div>
 
-                <!-- template (nieparsowany przez przeglądarkę) -->
                 <template id="cardTemplate">
                     <div class="template-card">
                         <h3 class="card-title">Karta — <span class="num"></span></h3>
@@ -185,7 +227,7 @@
                 <div class="example-area slider-wrap">
                     <div class="slider" id="slider" aria-roledescription="carousel">
                         <div class="slides">
-                            <div class="slide" style="background:linear-gradient(135deg,#ffd194,#f6a5ff);">
+                            <div class="slide" style="background:linear-gradient(135deg,#ff9a9e,#fecfef);">
                                 <div class="label">Slajd 1</div>
                                 <div class="caption">Witaj w sliderze</div>
                             </div>
@@ -198,14 +240,14 @@
                                 <div class="caption">Obsługa klawiatury i pauzy po najechaniu</div>
                             </div>
                         </div>
-                        <div class="slider-controls">
+                        <div class="slider-controls" aria-hidden="true">
                             <button id="btnPrev" aria-label="Poprzedni">◀</button>
                             <button id="btnNext" aria-label="Następny">▶</button>
                         </div>
                     </div>
 
                     <div style="display:flex;justify-content:space-between;align-items:center;">
-                        <div class="dots" id="dots"></div>
+                        <div class="dots" id="dots" aria-hidden="true"></div>
                         <div class="playstate" id="playState">autoplay: on</div>
                     </div>
                 </div>
@@ -213,6 +255,44 @@
                 <div class="note">Slider jest prosty, nie wymaga żadnych zewnętrznych bibliotek. Pauzuje na hover i reaguje na strzałki.</div>
             </section>
 
+            <!-- 5. Lightbox -->
+            <section class="card" id="section-lightbox">
+                <h2>5. Lightbox — galeria</h2>
+                <div class="controls">
+                    <button class="btn" id="shuffleGallery">Przetasuj miniatury</button>
+                    <button class="btn ghost" id="clearGallery">Wyczyść</button>
+                </div>
+
+                <div class="example-area">
+                    <div class="gallery" id="gallery">
+                        <!-- thumbnails inserted by JS -->
+                    </div>
+                </div>
+
+                <div class="note">Kliknij miniaturę, aby otworzyć zdjęcie w lightboxie. Obsługa klawiatury: Escape (zamknij), ← → (nawigacja).</div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Lightbox markup (inserted once) -->
+    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+        <button class="lb-close" id="lbClose" aria-label="Zamknij">✕</button>
+        <div class="lb-content" role="document">
+            <div class="lb-img-wrap">
+                <img src="" alt="" class="lb-img" id="lbImage">
+            </div>
+            <aside class="lb-sidebar">
+                <div>
+                    <div class="lb-title" id="lbTitle">Tytuł</div>
+                    <div class="lb-desc" id="lbDesc">Krótki opis zdjęcia</div>
+                </div>
+                <div class="lb-controls">
+                    <button class="lb-btn" id="lbPrev">◀ Poprzednie</button>
+                    <button class="lb-btn" id="lbNext">Następne ▶</button>
+                    <button class="lb-btn" id="lbZoom">Powiększ</button>
+                </div>
+            </aside>
         </div>
     </div>
 
@@ -231,15 +311,14 @@
             function makeEl(text){
                 const el = document.createElement('div');
                 el.classList.add('element');
-                el.style.background = `hsl(${Math.random()*360},90%,70%)`;
-                el.style.color = '#102027';
+                el.style.background = `hsl(${Math.floor(Math.random()*360)},85%,62%)`;
+                el.style.color = '#04121a';
                 el.textContent = text;
                 return el;
             }
 
             appendBtn.addEventListener('click', () => {
                 const el = makeEl(`Nowy ${++counter}`);
-                // klasyczna metoda - appendChild
                 container.appendChild(el);
             });
 
@@ -247,7 +326,6 @@
                 const el = makeEl(`Wstawiony ${++counter}`);
                 const strongs = container.querySelectorAll('strong');
                 const second = strongs[1] ?? null;
-                // jeśli nie ma drugiego strong - dodaj na koniec
                 if (second) {
                     container.insertBefore(el, second);
                 } else {
@@ -257,13 +335,11 @@
 
             prependBtn.addEventListener('click', () => {
                 const el = makeEl(`Na początku ${++counter}`);
-                // nowa metoda - prepend (wstawia element/text na początek)
                 container.prepend(el);
             });
 
             afterBtn.addEventListener('click', () => {
                 const el = makeEl(`Za kontenerem ${++counter}`);
-                // wstawia element za kontenerem
                 container.after(el);
             });
         })();
@@ -276,19 +352,16 @@
             const btn = document.getElementById('btn-changeWords');
             const btnReset = document.getElementById('btn-resetWords');
 
-            // tworzymy dwa węzły tekstu, które będziemy zmieniać
             const word1 = document.createTextNode("Psy");
             const middle = document.createTextNode(" są ");
             const word2 = document.createTextNode("fajne");
 
-            // ustawiamy zawartość paragrafu (append działa też z węzłami tekstowymi)
             p.appendChild(word1);
             p.appendChild(middle);
             p.appendChild(word2);
 
             let toggled = false;
             btn.addEventListener('click', () => {
-                // pokazujemy, że mamy bezpośredni dostęp do węzła tekstowego
                 if (!toggled) {
                     word1.textContent = "Koty też";
                     word2.textContent = "super!";
@@ -318,36 +391,27 @@
             const clearBtn = document.getElementById('btn-clearClones');
             let cardCount = 0;
 
-            // funkcja tworząca klon (node) i zwracająca go
             function createClone(){
                 if (!('content' in document.createElement('template'))) {
-                    // fallback: użyj innerHTML
                     const frag = document.createElement('div');
                     frag.innerHTML = template.innerHTML;
                     return frag;
                 }
                 const clone = template.content.cloneNode(true);
-                // ustaw numerki
                 const num = clone.querySelector('.num');
                 if (num) num.textContent = ++cardCount;
                 return clone;
             }
 
-            // opcja 1: klonuj i wstaw — bez podpinania eventów (pokaz problemu)
             cloneNoEventsBtn.addEventListener('click', () => {
                 const clone = createClone();
                 target.appendChild(clone);
-                // uwaga: przycisk wewnątrz klonu nie będzie miał przypiętego eventu automatycznie
             });
 
-            // opcja 2: klonuj i ręcznie przypnij eventy
             cloneWithEventsBtn.addEventListener('click', () => {
                 const clone = createClone();
-                // gdy sklonujemy content, otrzymamy DocumentFragment - musimy znaleźć właściwy element
-                // więc opakowujemy w div, by móc łatwo pracować z elementami
                 const wrapper = document.createElement('div');
                 wrapper.appendChild(clone);
-                // znajdź przycisk i dodaj event
                 const btn = wrapper.querySelector('.btn-card-action');
                 const removeBtn = wrapper.querySelector('.btn-remove');
 
@@ -361,21 +425,16 @@
                         wrapper.remove();
                     });
                 }
-                // wstaw gotowy wrapper (z eventami)
                 target.appendChild(wrapper);
             });
 
-            // usuń wszystkie sklonowane elementy
             clearBtn.addEventListener('click', () => {
-                // łatwo: wyczyść target
                 target.innerHTML = '';
                 cardCount = 0;
             });
 
-            // delegacja: zamontuj prostą delegację, by pokazać że można też "obsłużyć" eventy bez podczepiania do każdego elementu
             target.addEventListener('click', (e) => {
                 if (e.target.matches('.btn-card-action')) {
-                    // jeśli zdarzenie nie miało listenera, to i tak można reagować przez delegację
                     const card = e.target.closest('.template-card');
                     const num = card ? card.querySelector('.num')?.textContent : '(?)';
                     alert('Delegacja: Akcja na karcie #' + (num ?? '(?)'));
@@ -408,7 +467,6 @@
 
             function update(){
                 slidesContainer.style.transform = `translateX(-${index * 100}%)`;
-                // update dots
                 dotsWrap.querySelectorAll('.dot').forEach((d,i)=> d.classList.toggle('active', i===index));
             }
 
@@ -419,7 +477,6 @@
             function next(){ go(index+1); }
             function prev(){ go(index-1); }
 
-            // dots
             slides.forEach((s,i)=>{
                 const dot = document.createElement('button');
                 dot.className = 'dot';
@@ -428,11 +485,9 @@
                 dotsWrap.appendChild(dot);
             });
 
-            // buttons
             [prevBtn, btnPrev].forEach(b=> b && b.addEventListener('click', prev));
             [nextBtn, btnNext].forEach(b=> b && b.addEventListener('click', next));
 
-            // autoplay
             function startAutoplay(){
                 stopAutoplay();
                 interval = setInterval(next, AUTOPLAY_DELAY);
@@ -452,17 +507,14 @@
                 if (autoplay) stopAutoplay(); else startAutoplay();
             });
 
-            // pause on hover
             slider.addEventListener('mouseenter', () => { if (autoplay) stopAutoplay(); });
             slider.addEventListener('mouseleave', () => { if (!autoplay) startAutoplay(); });
 
-            // keyboard
             window.addEventListener('keydown', (e)=>{
                 if (e.key === 'ArrowLeft') prev();
                 if (e.key === 'ArrowRight') next();
             });
 
-            // touch support (simple)
             (function(){
                 let startX = 0, dx = 0;
                 slider.addEventListener('touchstart',(e)=> startX = e.touches[0].clientX);
@@ -473,9 +525,127 @@
                 });
             })();
 
-            // init
             go(0);
             startAutoplay();
+        })();
+
+        // ----------------------------
+        // 5) Lightbox (gallery)
+        // ----------------------------
+        (function(){
+            // Sample images (using picsum.photos for placeholders)
+            const images = [
+                { src: 'https://picsum.photos/id/1015/1200/800', thumb: 'https://picsum.photos/id/1015/600/400', title: 'Góry o świcie', desc: 'Spokojny widok górski o wschodzie słońca.' },
+                { src: 'https://picsum.photos/id/1025/1200/800', thumb: 'https://picsum.photos/id/1025/600/400', title: 'Pies w polu', desc: 'Energia i radość na zdjęciu z natury.' },
+                { src: 'https://picsum.photos/id/1043/1200/800', thumb: 'https://picsum.photos/id/1043/600/400', title: 'Miejska perspektywa', desc: 'Kolorowe światła i architektura.' }
+            ];
+
+            const gallery = document.getElementById('gallery');
+            const shuffleBtn = document.getElementById('shuffleGallery');
+            const clearBtn = document.getElementById('clearGallery');
+
+            // Lightbox elements
+            const lb = document.getElementById('lightbox');
+            const lbImage = document.getElementById('lbImage');
+            const lbTitle = document.getElementById('lbTitle');
+            const lbDesc = document.getElementById('lbDesc');
+            const lbClose = document.getElementById('lbClose');
+            const lbPrev = document.getElementById('lbPrev');
+            const lbNext = document.getElementById('lbNext');
+            const lbZoom = document.getElementById('lbZoom');
+
+            let current = 0;
+            let zoomed = false;
+
+            function renderGallery(list){
+                gallery.innerHTML = '';
+                list.forEach((it, idx) => {
+                    const t = document.createElement('div');
+                    t.className = 'thumb';
+                    t.setAttribute('data-index', idx);
+                    t.innerHTML = `<img loading="lazy" src="${it.thumb}" alt="${escapeHtml(it.title)}"><div class="caption">${escapeHtml(it.title)}</div>`;
+                    t.addEventListener('click', ()=> openLightbox(idx));
+                    gallery.appendChild(t);
+                });
+            }
+
+            function openLightbox(idx){
+                current = idx;
+                const it = images[current];
+                lbImage.src = it.src;
+                lbImage.alt = it.title;
+                lbTitle.textContent = it.title;
+                lbDesc.textContent = it.desc;
+                lb.classList.add('open');
+                lb.setAttribute('aria-hidden','false');
+                document.body.style.overflow = 'hidden';
+                // focus management
+                lbClose.focus();
+            }
+
+            function closeLightbox(){
+                lb.classList.remove('open');
+                lb.setAttribute('aria-hidden','true');
+                document.body.style.overflow = '';
+                zoomed = false;
+                lbImage.style.transform = '';
+            }
+
+            function prev(){
+                current = (current - 1 + images.length) % images.length;
+                openLightbox(current);
+            }
+            function next(){
+                current = (current + 1) % images.length;
+                openLightbox(current);
+            }
+
+            function toggleZoom(){
+                zoomed = !zoomed;
+                lbImage.style.transform = zoomed ? 'scale(1.18)' : '';
+            }
+
+            // keyboard & interactions
+            document.addEventListener('keydown', (e)=>{
+                if (lb.classList.contains('open')) {
+                    if (e.key === 'Escape') closeLightbox();
+                    if (e.key === 'ArrowLeft') prev();
+                    if (e.key === 'ArrowRight') next();
+                    if (e.key === '+') toggleZoom();
+                }
+            });
+
+            lbClose.addEventListener('click', closeLightbox);
+            lbPrev.addEventListener('click', prev);
+            lbNext.addEventListener('click', next);
+            lbZoom.addEventListener('click', toggleZoom);
+
+            // click outside content -> close
+            lb.addEventListener('click', (e) => {
+                if (e.target === lb) closeLightbox();
+            });
+
+            // simple shuffle
+            shuffleBtn.addEventListener('click', ()=>{
+                for (let i = images.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [images[i], images[j]] = [images[j], images[i]];
+                }
+                renderGallery(images);
+            });
+
+            clearBtn.addEventListener('click', ()=>{
+                gallery.innerHTML = '';
+            });
+
+            // escape helper for alt text injection
+            function escapeHtml(s){ return String(s).replace(/[&<>"']/g, (m)=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m])); }
+
+            // initial render
+            renderGallery(images);
+
+            // expose for debugging (optional)
+            window.__lightbox = { open: openLightbox, close: closeLightbox, next, prev };
         })();
     </script>
 </body>
