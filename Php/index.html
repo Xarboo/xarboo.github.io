@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>demo Ciasteczek (JS)</title>
+</head>
+<body>
+  <!-- Formularz podobny do PHP -->
+  <form id="nazwaForm">
+    <label>
+      Twoja nazwa:
+      <input type="text" name="nazwa" id="nazwa" autocomplete="off">
+    </label>
+    <button type="submit">Save (JS)</button>
+  </form>
+
+  <p>
+    <button id="read">Czytaj cookie</button>
+    <button id="delete">Usuń cookie</button>
+  </p>
+
+  <p id="status" aria-live="polite"></p>
+
+  <p>
+    Note:
+    <ul>
+      <li>Przycisk Save (JS) utworzy ciasteczka za pomocą js.</li>
+    </ul>
+  </p>
+
+  <script src="script.js"></script>
+</body>
+</html>
