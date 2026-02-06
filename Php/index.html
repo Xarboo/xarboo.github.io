@@ -28,7 +28,27 @@
       <li>Przycisk Save (JS) utworzy ciasteczka za pomocą js.</li>
     </ul>
   </p>
+  <br><br>
+  <p>
+    form method="post" action="">
+        label>
+            Twoja nazwa:
+            input type="text" name="nazwa">
+        /label>
+        button type="submit">Save/button>
+    /form>
+<!-- W tym skrypcie ustawimy 'ciasteczka' dla podanego użytkownika w formularzu -->
+    ?php
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $nazwaUzytkownika = $_POST["nazwa"];
 
+            $nazwaUzytkownika = htmlspecialchars($nazwaUzytkownika);
+            //
+            setcookie("nazwa", $nazwaUzytkownika, time() + 86400, "/");
+            // 1 dzień to 86400 jednostek w ciasteczkach
+        }
+    ?>
+  </p>
   <script src="script.js"></script>
 </body>
 </html>
