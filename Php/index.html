@@ -30,24 +30,24 @@
   </p>
   <br><br>
   <p>
-    form method="post" action="">
-        label>
-            Twoja nazwa:
-            input type="text" name="nazwa">
-        /label>
-        button type="submit">Save/button>
-    /form>
-<!-- W tym skrypcie ustawimy 'ciasteczka' dla podanego użytkownika w formularzu -->
-    ?php
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $nazwaUzytkownika = $_POST["nazwa"];
-
-            $nazwaUzytkownika = htmlspecialchars($nazwaUzytkownika);
-            //
-            setcookie("nazwa", $nazwaUzytkownika, time() + 86400, "/");
-            // 1 dzień to 86400 jednostek w ciasteczkach
-        }
-    ?>
+    form method="post" action=""> <br>
+        label><br>
+            Twoja nazwa:<br>
+            input type="text" name="nazwa"><br>
+        /label><br>
+        button type="submit">Save/button><br>
+    /form><br>
+        W tym skrypcie ustawimy 'ciasteczka' dla podanego użytkownika w formularzu<br>
+    ?php<br>
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {<br>
+            $nazwaUzytkownika = $_POST["nazwa"];<br>
+<br>
+            $nazwaUzytkownika = htmlspecialchars($nazwaUzytkownika);<br>
+            //<br>
+            setcookie("nazwa", $nazwaUzytkownika, time() + 86400, "/");<br>
+            // 1 dzień to 86400 jednostek w ciasteczkach<br>
+        }<br>
+    ?><br>
   </p>
   <script src="script.js"></script>
 </body>
