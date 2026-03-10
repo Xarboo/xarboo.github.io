@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Generator tabliczki mnożenia</title>
+</head>
+
+<body>
+
+<h2>Tabliczka mnożenia 1-10</h2>
+
+<button onclick="generuj()">Pokaż tabliczkę</button>
+
+<div id="rezultat"></div>
+
+<script>
+
+function generuj(){
+
+    let pole = document.getElementById("rezultat");
+    pole.innerHTML = "";
+
+    let mnozenie = new Array(11);
+
+    for(let a = 0; a <= 10; a++){
+        mnozenie[a] = new Array(11);
+    }
+
+    for(let rzad = 1; rzad <= 10; rzad++){
+
+        for(let kol = 1; kol <= 10; kol++){
+
+            mnozenie[rzad][kol] = rzad * kol;
+
+            pole.innerHTML += rzad + " × " + kol + " = " + mnozenie[rzad][kol] + "<br>";
+
+        }
+
+        pole.innerHTML += "<br>";
+    }
+
+}
+
+</script>
+
+</body>
+</html>
