@@ -2,47 +2,155 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tabliczka mnożenia</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .container {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        padding: 40px;
+        max-width: 900px;
+        width: 100%;
+    }
+    
+    h2 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 28px;
+    }
+    
+    button {
+        display: block;
+        margin: 0 auto 30px;
+        padding: 12px 40px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+    }
+    
+    button:active {
+        transform: translateY(0);
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    
+    th {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 12px;
+        text-align: center;
+        font-weight: 600;
+    }
+    
+    td {
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #e0e0e0;
+        color: #333;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f8f9ff;
+    }
+    
+    tr:nth-child(odd) {
+        background-color: #ffffff;
+    }
+    
+    tbody tr:hover {
+        background-color: #e8ebff;
+    }
+    
+    @media (max-width: 768px) {
+        .container {
+            padding: 20px;
+        }
+        
+        h2 {
+            font-size: 22px;
+        }
+        
+        table {
+            font-size: 14px;
+        }
+        
+        th, td {
+            padding: 8px;
+        }
+    }
+</style>
 </head>
 
 <body>
 
-<h2>Tabliczka mnożenia 1-10 x 1-10</h2>
-
-<button onclick="generuj()">Tablica</button>
-
-<div id="res"></div>
+<div class="container">
+    <h2>Tabliczka mnożenia 1-10 x 1-10</h2>
+    
+    <button onclick="generuj()">Generuj Tablicę</button>
+    
+    <div id="res"></div>
+</div>
 
 <script>
 
 function generuj(){
-
     let pole = document.getElementById("res");
     pole.innerHTML = "";
-
-    let mnozenie = new Array(11);
-
-    for(let a = 0; a <= 10; a++){
-        mnozenie[a] = new Array(11);
+    
+    let table = "<table><tr><th>×</th>";
+    
+    for(let i = 1; i <= 10; i++){ 
+        table += "<th>" + i + "</th>";
     }
-
-    for(let rzad = 1; rzad <= 10; rzad++){
-
-        for(let kol = 1; kol <= 10; kol++){
-
-            mnozenie[rzad][kol] = rzad * kol;
-
-            pole.innerHTML += rzad + " × " + kol + " = " + mnozenie[rzad][kol] + "<br>";
-
+    table += "</tr>";
+    
+    for(let rzad = 1; rzad <= 10; rzad++){ 
+        table += "<tr><th>" + rzad + "</th>";
+        
+        for(let kol = 1; kol <= 10; kol++){ 
+            let wynik = rzad * kol;
+            table += "<td>" + wynik + "</td>";
         }
-
-        pole.innerHTML += "<br>";
+        
+        table += "</tr>";
     }
-
+    
+    table += "</table>";
+    pole.innerHTML = table;
 }
 
 </script>
 
 </body>
 </html>
-
