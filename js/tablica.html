@@ -116,29 +116,30 @@
 <script>
 
 function generuj(){
+
+    let pole = document.getElementById("rezultat");
     let pole = document.getElementById("res");
     pole.innerHTML = "";
-    
-    let table = "<table><tr><th>×</th>";
-    
-    for(let i = 1; i <= 10; i++){ 
-        table += "<th>" + i + "</th>";
+
+    let mnozenie = new Array(11);
+
+    for(let a = 0; a <= 10; a++){
+        mnozenie[a] = new Array(11);
     }
-    table += "</tr>";
-    
-    for(let rzad = 1; rzad <= 10; rzad++){ 
-        table += "<tr><th>" + rzad + "</th>";
-        
-        for(let kol = 1; kol <= 10; kol++){ 
-            let wynik = rzad * kol;
-            table += "<td>" + wynik + "</td>";
+
+    for(let rzad = 1; rzad <= 10; rzad++){
+
+        for(let kol = 1; kol <= 10; kol++){
+
+            mnozenie[rzad][kol] = rzad * kol;
+
+            pole.innerHTML += rzad + " × " + kol + " = " + mnozenie[rzad][kol] + "<br>";
+
         }
-        
-        table += "</tr>";
+
+        pole.innerHTML += "<br>";
     }
-    
-    table += "</table>";
-    pole.innerHTML = table;
+
 }
 
 </script>
