@@ -2,22 +2,22 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
-<title>Generator tabliczki mnożenia</title>
+<title>Tabliczka mnożenia</title>
 </head>
 
 <body>
 
-<h2>Tabliczka mnożenia 1-10</h2>
+<h2>Tabliczka mnożenia 1-10 x 1-10</h2>
 
-<button onclick="generuj()">Pokaż tabliczkę</button>
+<button onclick="generuj()">Tablica</button>
 
-<div id="rezultat"></div>
+<div id="res"></div>
 
 <script>
 
 function generuj(){
 
-    let pole = document.getElementById("rezultat");
+    let pole = document.getElementById("res");
     pole.innerHTML = "";
 
     let mnozenie = new Array(11);
@@ -45,3 +45,4 @@ function generuj(){
 
 </body>
 </html>
+
