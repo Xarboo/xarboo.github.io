@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gear Hub - Gitary i Sprzęt</title>
+    <style>
+        :root {
+            --jade-primary: #00a86b;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --accent-gold: #ffcc33;
+        }
+
+        body {
+            background: linear-gradient(135deg, #001a11 0%, #004d33 100%);
+            background-attachment: fixed;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: white;
+            padding: 20px 0;
+        }
+
+        .content-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-align: center;
+            color: var(--jade-primary);
+        }
+
+        .form-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        input {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--glass-border);
+            padding: 10px;
+            border-radius: 8px;
+            color: white;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: var(--jade-primary);
+        }
+
+        button {
+            grid-column: span 2;
+            background: var(--jade-primary);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #00cc82;
+            transform: translateY(-2px);
+        }
+
+        #inventory-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .gear-item {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-gold);
+            font-size: 0.9rem;
+        }
+
+        .gear-item strong {
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            color: white;
+            opacity: 0.6;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content-card">
+        <h1>🎸 Guitar Gear Hub</h1>
+        
+        <div class="form-section">
+            <input type="text" id="itemName" placeholder="Nazwa sprzętu (np. Gibson Les Paul)">
+            <input type="text" id="itemType" placeholder="Typ (np. Gitara elektryczna)">
+            <input type="text" id="itemBrand" placeholder="Marka (np. Gibson)">
+            <input type="text" id="itemPrice" placeholder="Cena (np. 8500 zł)">
+            <button onclick="addToInventory()">Dodaj do kolekcji</button>
+        </div>
+
+        <div id="inventory-list">
+            </div>
+
+        <a href="index.html" class="back-link">← Wróć do spisu plików</a>
+    </div>
+
+    <script>
+        // Nasza baza danych w formie tablicy obiektów (tablic asocjacyjnych)
+        let inventory = [
+            {
+                nazwa: "Stratocaster Professional",
+                typ: "Gitara elektryczna",
+                marka: "Fender",
+                cena: "7200 zł"
+            },
+            {
+                nazwa: "Katana-50 MkII",
+                typ: "Wzmacniacz",
+                marka: "Boss",
+                cena: "1200 zł"
+            }
+        ];
+
+        function renderInventory() {
+            const list = document.getElementById('inventory-list');
+            list.innerHTML = ''; // Czyścimy listę przed ponownym renderowaniem
+
+            inventory.forEach((item) => {
+                const div = document.createElement('div');
+                div.className = 'gear-item';
+                div.innerHTML = `
+                    <strong>${item.typ}</strong>
+                    <b>${item.marka}</b> ${item.nazwa}<br>
+                    <span style="color: #aaa">Cena: ${item.cena}</span>
+                `;
+                list.appendChild(div);
+            });
+        }
+
+        function addToInventory() {
+            const name = document.getElementById('itemName').value;
+            const type = document.getElementById('itemType').value;
+            const brand = document.getElementById('itemBrand').value;
+            const price = document.getElementById('itemPrice').value;
+
+            if(name && type && brand) {
+                // Tworzymy nową tablicę asocjacyjną (obiekt)
+                const newItem = {
+                    nazwa: name,
+                    typ: type,
+                    marka: brand,
+                    cena: price
+                };
+
+                // Dodajemy ją do naszej głównej tablicy
+                inventory.push(newItem);
+
+                // Czyścimy formularz
+                document.getElementById('itemName').value = '';
+                document.getElementById('itemType').value = '';
+                document.getElementById('itemBrand').value = '';
+                document.getElementById('itemPrice').value = '';
+
+                // Odświeżamy widok
+                renderInventory();
+            } else {
+                alert("Wypełnij przynajmniej nazwę, typ i markę!");
+            }
+        }
+
+        // Pierwsze renderowanie przy starcie strony
+        renderInventory();
+    </script>
+</body>
+</html>
