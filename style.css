@@ -12,7 +12,9 @@ body {
   color: white;
   overflow-x: hidden;
 }
-
+li{
+  font-family: 'UnifrakturMaguntia', sans-serif;
+}
 #bgVideo {
   position: fixed;
   top: 0;
@@ -184,4 +186,7 @@ body {
   #countdown { font-size: 1.8em; }
   .menu a { font-size: 20px; }
   .gear-content h2 { font-size: 2.2rem; }
+}
+a{
+   font-family: 'UnifrakturMaguntia', sans-serif;
 }
