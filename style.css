@@ -1,11 +1,10 @@
 body {
   margin: 0;
-  font-family: "Kode Mono", monospace;
+  font-family: "UnifrakturCook", cursive; /* Changed from Kode Mono */
   overflow-y: auto;
   min-height: 100vh;
   color: white;
 }
-
 /* Video background */
 #bgVideo {
   position: fixed;
@@ -355,10 +354,11 @@ body {
     width: 80%;
     max-width: 500px;
     color: white;
-    font-family: 'Kode Mono', monospace;
+    font-family: "UnifrakturCook", cursive; 
     position: relative;
     box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     animation: fadeIn 0.3s ease;
+  
 }
 
 .gear-content h2 {
