@@ -80,6 +80,7 @@ body {
 
 /* Links inside menu */
 .menu a {
+  font-family: 'UnifrakturCook', cursive;
   display: block;
   margin: 10px 0;
   text-decoration: none;
