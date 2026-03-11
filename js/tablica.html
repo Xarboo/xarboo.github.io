@@ -1,147 +1,154 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tabliczkamnożenia</title>
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        min-height: 100vh;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabliczka Mnożenia - Jade Hub</title>
+    <style>
+        :root {
+            --jade-primary: #00a86b;
+            --jade-dark: #004d33;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
 
-    h2 {
-        color: #333;
-        text-align: center;
-        margin-bottom: 30px;
-        font-size: 28px;
-    }
-    
-    button {
-        display: block;
-        margin: 0 auto 30px;
-        padding: 12px 40px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        border: none;
-        border-radius: 8px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: transform 0.2s, box-shadow 0.2s;
-    }
-    
-    button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-    }
-    
-    button:active {
-        transform: translateY(0);
-    }
-    
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
-    
-    th {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 12px;
-        text-align: center;
-        font-weight: 600;
-    }
-    
-    td {
-        padding: 10px;
-        text-align: center;
-        border: 1px solid #e0e0e0;
-        color: #333;
-    }
-    
-    tr:nth-child(even) {
-        background-color: #f8f9ff;
-    }
-    
-    tr:nth-child(odd) {
-        background-color: #ffffff;
-    }
-    
-    tbody tr:hover {
-        background-color: #e8ebff;
-    }
-    
-    @media (max-width: 768px) {
+        body {
+            background: linear-gradient(135deg, #00a86b 0%, #004d33 100%);
+            background-attachment: fixed;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            color: white;
+            padding: 40px 20px;
+        }
+
         .container {
-            padding: 20px;
+            text-align: center;
+            width: 100%;
+            max-width: 1000px;
         }
-        
-        h2 {
-            font-size: 22px;
-        }
-        
-        table {
-            font-size: 14px;
-        }
-        
-        th, td {
-            padding: 8px;
-        }
-    }
-</style>
-</head>
 
+        h2 {
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        button {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        /* The grid for the results */
+        #res {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
+
+        /* Glass cards for each row of the array */
+        .row-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: left;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.5s ease-out forwards;
+        }
+
+        .row-header {
+            border-bottom: 1px solid var(--glass-border);
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            font-weight: bold;
+            color: #afffdf;
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 40px;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover { color: white; }
+    </style>
+</head>
 <body>
 
 <div class="container">
-    <h2>Tabliczka mnożenia 1-10 x 1-10</h2>
+    <h2>Tabliczka Mnożenia</h2>
     
     <button onclick="generuj()">Generuj Tablicę</button>
     
     <div id="res"></div>
+
+    <br>
+    <a href="index.html" class="back-link">← Wróć do folderu</a>
 </div>
 
 <script>
-
-function generuj(){
-
-    let pole = document.getElementById("rezultat");
+function generuj() {
     let pole = document.getElementById("res");
     pole.innerHTML = "";
+    pole.style.opacity = "1";
 
+    // Creating the 2D array
     let mnozenie = new Array(11);
-
-    for(let a = 0; a <= 10; a++){
+    for(let a = 0; a <= 10; a++) {
         mnozenie[a] = new Array(11);
     }
 
-    for(let rzad = 1; rzad <= 10; rzad++){
-
-        for(let kol = 1; kol <= 10; kol++){
-
+    // Calculating and generating the cards
+    for(let rzad = 1; rzad <= 10; rzad++) {
+        let cardHTML = `<div class="row-card" style="animation-delay: ${rzad * 0.05}s">`;
+        cardHTML += `<span class="row-header">Mnożenie przez ${rzad}</span>`;
+        
+        for(let kol = 1; kol <= 10; kol++) {
             mnozenie[rzad][kol] = rzad * kol;
-
-            pole.innerHTML += rzad + " × " + kol + " = " + mnozenie[rzad][kol] + "<br>";
-
+            cardHTML += `${rzad} × ${kol} = <strong>${mnozenie[rzad][kol]}</strong><br>`;
         }
-
-        pole.innerHTML += "<br>";
+        
+        cardHTML += `</div>`;
+        pole.innerHTML += cardHTML;
     }
-
 }
-
 </script>
 
 </body>
