@@ -84,6 +84,14 @@
       }, 1000);
     }
     startCountdown();
+    function toggleGear() {
+    const box = document.getElementById("gearBox");
+    if (box.style.display === "flex") {
+        box.style.display = "none";
+    } else {
+        box.style.display = "flex";
+    }
+}
   </script>
   <script src="clock.js"></script>
 </body>
