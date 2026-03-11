@@ -48,10 +48,22 @@
 <div class="center-div">
   <div class="menu">
     <a href="js/">Hub z JavaScriptem</a>
-    </div>
+    <a href="javascript:void(0)" onclick="toggleGear()">My Gear</a>
   </div>
 </div>
 
+<div id="gearBox" class="gear-container">
+    <div class="gear-content">
+        <span class="close-btn" onclick="toggleGear()">&times;</span>
+        <h2>My Gear Setup</h2>
+        <hr>
+        <ul>
+            <li><strong>Guitar:</strong> JemJr White</li>
+            <li><strong>Amp:</strong> Marshall MG15G</li>
+            <li><strong>Pedals:</strong> Distortion</li>
+            </ul>
+    </div>
+</div>
   <script>
     // Countdown
     function startCountdown() {
