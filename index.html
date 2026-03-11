@@ -48,42 +48,9 @@
 <div class="center-div">
   <div class="menu">
     <a href="js/">Hub z JavaScriptem</a>
-    <div id="songsterr-container" class="songsterr-card">
-        <div id="song-data">Loading Tabs...</div>
     </div>
   </div>
 </div>
-
-<script>
-    async function getSongsterrTabs() {
-        const container = document.getElementById('song-data');
-        // Example: Searching for tabs by a specific artist (e.g., Metallica)
-        // You can change 'pattern' to your favorite band
-        const url = "https://www.songsterr.com/a/ra/songs.json?pattern=結束バンド(Kessoku Band)";
-
-        try {
-            const response = await fetch(url);
-            const data = await response.json();
-            
-            // We take the top 3 results for the menu
-            const topSongs = data.slice(0, 3);
-            
-            container.innerHTML = `<span class="music-label">🎸 Trending Tabs</span>`;
-            
-            topSongs.forEach(song => {
-                const songLink = document.createElement('a');
-                songLink.href = `https://www.songsterr.com/a/wa/song?id=${song.id}`;
-                songLink.target = "_blank";
-                songLink.className = "api-song-link";
-                songLink.innerHTML = `${song.title} <small>${song.artist.name}</small>`;
-                container.appendChild(songLink);
-            });
-        } catch (error) {
-            container.innerHTML = '<a href="https://www.songsterr.com" target="_blank">View Songsterr Profile</a>';
-        }
-    }
-    getSongsterrTabs();
-</script>
 
   <script>
     // Countdown
