@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gear Hub - Gitary i Sprzęt</title>
+    <title>Gear Hub Pro - Management</title>
     <style>
         :root {
             --jade-primary: #00a86b;
+            --jade-hover: #00cc82;
             --glass-bg: rgba(255, 255, 255, 0.1);
             --glass-border: rgba(255, 255, 255, 0.2);
             --accent-gold: #ffcc33;
+            --danger: #ff4d4d;
         }
 
         body {
@@ -22,7 +24,7 @@
             min-height: 100vh;
             margin: 0;
             color: white;
-            padding: 20px 0;
+            padding: 40px 0;
         }
 
         .content-card {
@@ -31,177 +33,201 @@
             -webkit-backdrop-filter: blur(15px);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
-            padding: 40px;
-            max-width: 800px;
-            width: 90%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            padding: 30px;
+            max-width: 900px;
+            width: 95%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
-        h1 {
-            font-weight: 300;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            text-align: center;
-            color: var(--jade-primary);
-        }
+        h1 { text-align: center; letter-spacing: 3px; color: var(--jade-primary); margin-top: 0; }
 
-        .form-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
+        /* Formularz i Filtrowanie */
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
             margin-bottom: 30px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
             background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
+            padding: 15px;
             border-radius: 12px;
         }
 
         input {
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.3);
             border: 1px solid var(--glass-border);
             padding: 10px;
-            border-radius: 8px;
+            border-radius: 6px;
             color: white;
-            outline: none;
         }
 
-        input:focus {
-            border-color: var(--jade-primary);
-        }
-
-        button {
-            grid-column: span 2;
-            background: var(--jade-primary);
-            color: white;
-            border: none;
+        .search-bar {
+            width: 100%;
             padding: 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
+            box-sizing: border-box;
+            border-left: 4px solid var(--accent-gold);
+            font-size: 1rem;
         }
 
-        button:hover {
-            background: #00cc82;
-            transform: translateY(-2px);
-        }
-
+        /* Lista i Kafelki */
         #inventory-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 15px;
-            margin-top: 20px;
         }
 
         .gear-item {
             background: rgba(255, 255, 255, 0.08);
-            padding: 15px;
-            border-radius: 10px;
-            border-left: 4px solid var(--accent-gold);
-            font-size: 0.9rem;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            cursor: grab;
+            position: relative;
+            transition: transform 0.2s, background 0.2s;
+            user-select: none;
         }
 
-        .gear-item strong {
-            color: var(--accent-gold);
-            display: block;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            font-size: 0.75rem;
+        .gear-item:active { cursor: grabbing; }
+        .gear-item.dragging { opacity: 0.4; transform: scale(0.95); }
+
+        .gear-item strong { color: var(--accent-gold); display: block; font-size: 0.8rem; }
+        .gear-item b { font-size: 1.1rem; }
+
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--danger);
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 5px;
+            opacity: 0.5;
+            transition: 0.3s;
         }
 
-        .back-link {
-            display: block;
-            text-align: center;
-            margin-top: 30px;
+        .delete-btn:hover { opacity: 1; transform: scale(1.2); }
+
+        .btn-add {
+            background: var(--jade-primary);
             color: white;
-            opacity: 0.6;
-            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            grid-column: 1 / -1;
+            padding: 10px;
+            border-radius: 6px;
         }
+
+        .btn-add:hover { background: var(--jade-hover); }
+
+        .back-link { display: block; text-align: center; margin-top: 30px; color: white; opacity: 0.5; text-decoration: none; }
     </style>
 </head>
 <body>
 
     <div class="content-card">
-        <h1>🎸 Guitar Gear Hub</h1>
+        <h1>🎸 Gear Inventory Management</h1>
         
-        <div class="form-section">
-            <input type="text" id="itemName" placeholder="Nazwa sprzętu (np. Gibson Les Paul)">
-            <input type="text" id="itemType" placeholder="Typ (np. Gitara elektryczna)">
-            <input type="text" id="itemBrand" placeholder="Marka (np. Gibson)">
-            <input type="text" id="itemPrice" placeholder="Cena (np. 8500 zł)">
-            <button onclick="addToInventory()">Dodaj do kolekcji</button>
+        <div class="controls">
+            <div class="form-grid">
+                <input type="text" id="itemName" placeholder="Nazwa (np. Jazzmaster)">
+                <input type="text" id="itemType" placeholder="Typ (np. Gitara)">
+                <input type="text" id="itemBrand" placeholder="Marka">
+                <input type="text" id="itemPrice" placeholder="Cena">
+                <button class="btn-add" onclick="addToInventory()">DODAJ SPRZĘT</button>
+            </div>
+
+            <input type="text" id="filterInput" class="search-bar" placeholder="🔍 Szukaj sprzętu lub marki..." oninput="renderInventory()">
         </div>
 
         <div id="inventory-list">
             </div>
 
-        <a href="index.html" class="back-link">← Wróć do spisu plików</a>
+        <a href="index.html" class="back-link">← Powrót do Directory</a>
     </div>
 
     <script>
-        // Nasza baza danych w formie tablicy obiektów (tablic asocjacyjnych)
+        // Dane początkowe
         let inventory = [
-            {
-                nazwa: "Stratocaster Professional",
-                typ: "Gitara elektryczna",
-                marka: "Fender",
-                cena: "7200 zł"
-            },
-            {
-                nazwa: "Katana-50 MkII",
-                typ: "Wzmacniacz",
-                marka: "Boss",
-                cena: "1200 zł"
-            }
+            { id: Date.now() + 1, nazwa: "Stratocaster", typ: "Gitara", marka: "Fender", cena: "7200 zł" },
+            { id: Date.now() + 2, nazwa: "Katana MkII", typ: "Wzmacniacz", marka: "Boss", cena: "1200 zł" },
+            { id: Date.now() + 3, nazwa: "Cry Baby", typ: "Efekt", marka: "Dunlop", cena: "550 zł" }
         ];
 
+        // GŁÓWNA FUNKCJA RENDERUJĄCA
         function renderInventory() {
             const list = document.getElementById('inventory-list');
-            list.innerHTML = ''; // Czyścimy listę przed ponownym renderowaniem
+            const filterValue = document.getElementById('filterInput').value.toLowerCase();
+            list.innerHTML = '';
 
-            inventory.forEach((item) => {
-                const div = document.createElement('div');
-                div.className = 'gear-item';
-                div.innerHTML = `
-                    <strong>${item.typ}</strong>
-                    <b>${item.marka}</b> ${item.nazwa}<br>
-                    <span style="color: #aaa">Cena: ${item.cena}</span>
-                `;
-                list.appendChild(div);
-            });
+            inventory
+                .filter(item => 
+                    item.nazwa.toLowerCase().includes(filterValue) || 
+                    item.marka.toLowerCase().includes(filterValue)
+                )
+                .forEach((item, index) => {
+                    const div = document.createElement('div');
+                    div.className = 'gear-item';
+                    div.draggable = true;
+                    div.dataset.index = index;
+                    
+                    div.innerHTML = `
+                        <button class="delete-btn" onclick="deleteItem(${item.id})">×</button>
+                        <strong>${item.typ}</strong>
+                        <b>${item.marka}</b> ${item.nazwa}<br>
+                        <span style="color: #aaa">${item.cena}</span>
+                    `;
+
+                    // Obsługa Drag & Drop
+                    div.addEventListener('dragstart', () => div.classList.add('dragging'));
+                    div.addEventListener('dragend', () => div.classList.remove('dragging'));
+
+                    list.appendChild(div);
+                });
         }
 
+        // LOGIKA DRAG & DROP
+        const listContainer = document.getElementById('inventory-list');
+        listContainer.addEventListener('dragover', e => {
+            e.preventDefault();
+            const draggingItem = document.querySelector('.dragging');
+            const siblings = [...listContainer.querySelectorAll('.gear-item:not(.dragging)')];
+            
+            const nextSibling = siblings.find(sibling => {
+                return e.clientY <= sibling.offsetTop + sibling.offsetHeight / 2;
+            });
+
+            listContainer.insertBefore(draggingItem, nextSibling);
+        });
+
+        // DODAWANIE
         function addToInventory() {
             const name = document.getElementById('itemName').value;
             const type = document.getElementById('itemType').value;
             const brand = document.getElementById('itemBrand').value;
             const price = document.getElementById('itemPrice').value;
 
-            if(name && type && brand) {
-                // Tworzymy nową tablicę asocjacyjną (obiekt)
-                const newItem = {
-                    nazwa: name,
-                    typ: type,
-                    marka: brand,
-                    cena: price
-                };
-
-                // Dodajemy ją do naszej głównej tablicy
-                inventory.push(newItem);
-
-                // Czyścimy formularz
-                document.getElementById('itemName').value = '';
-                document.getElementById('itemType').value = '';
-                document.getElementById('itemBrand').value = '';
-                document.getElementById('itemPrice').value = '';
-
-                // Odświeżamy widok
+            if(name && brand) {
+                inventory.push({ id: Date.now(), nazwa: name, typ: type, marka: brand, cena: price });
                 renderInventory();
-            } else {
-                alert("Wypełnij przynajmniej nazwę, typ i markę!");
+                ["itemName", "itemType", "itemBrand", "itemPrice"].forEach(id => document.getElementById(id).value = '');
             }
         }
 
-        // Pierwsze renderowanie przy starcie strony
+        // USUWANIE
+        function deleteItem(id) {
+            inventory = inventory.filter(item => item.id !== id);
+            renderInventory();
+        }
+
+        // Start
         renderInventory();
     </script>
 </body>
