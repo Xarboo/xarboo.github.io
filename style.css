@@ -1,6 +1,9 @@
 body {
+
   margin: 0;
-  font-family: "UnifrakturCook", cursive; /* Changed from Kode Mono */
+  font-family: 'UnifrakturCook', cursive;
+  /* ... keep the rest of your body code ... */
+
   overflow-y: auto;
   min-height: 100vh;
   color: white;
