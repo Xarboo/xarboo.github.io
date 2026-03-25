@@ -1,9 +1,6 @@
 body {
-
   margin: 0;
   font-family: 'UnifrakturCook', cursive;
-  /* ... keep the rest of your body code ... */
-
   overflow-y: auto;
   min-height: 100vh;
   color: white;
@@ -19,7 +16,6 @@ body {
   z-index: -2;
   pointer-events: none;
 }
-
 /* Dark overlay */
 #overlay {
   position: fixed;
@@ -30,27 +26,18 @@ body {
   background: rgba(0, 0, 0, 0.45);
   z-index: -1;
 }
-
 /* Centered menu */
 .center-div {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  /* ensure stacking context is predictable */
   position: relative;
   z-index: 0;
 }
-
 /* Frosted glass menu */
-/* Use feature query so we provide a fallback if backdrop-filter unsupported */
 .menu {
-  /* fallback solid-ish tint for very old browsers */
   background: rgba(255, 140, 0, 0.9);
-
-  /* Default visual: try to use frosted glass when supported */
-  /* We'll override below inside @supports */
-
   border-radius: 12px;
   padding: 30px 40px;
   /* softer shadow to keep focus on frosted background */
