@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styl.css">
+    <title>Tatuaże</title>
+</head>
+<body>
+    <header id="nag1">
+        <img src="logo.png" alt="salon">
+    </header>
+    <header id="nag2">
+        <h1>Studio Tatuażu</h1>
+    </header>
+    
+    <section id="sekcja">
+        <h2>Galeria</h2>
+        <img src="smok.png" alt="Smok.png" class="miniatury">
+        <img src="koliber.png" alt="koliber.png" class="miniatury">
+    </section>
+    <aside>
+        <h3>Dodaj wzór</h3>
+        <label for="input">
+            Wzór:
+            <br>
+            <input type="file" name="" id="wzor" accept=".png" required>
+            <br>
+        </label>
+        <label for="kolor">
+            kolor:
+            <br>
+            <select name="" id="kolor" required>
+                <option value="">Czarny</option>
+                <option value="">Czerwony</option>
+                <option value="">Zielony</option>
+                <option value="">Niebieski</option>
+            </select>
+            <br>
+        </label>  
+        <label for="cena">
+            Cena:
+            <br>
+            <input type="number" name="" id="cena" required>
+        </label>
+        <input type="button" value="Dodaj Wzór" onclick="dodawanie()">
+        <!-- Skrypt JS -->
+        <script>
+            // wycianie nazwy pliku (????????????????????????????)
+            function nazwapliku(sciezkaPliku) {
+                return sciezkaPliku.split(/[/\\]/).pop();
+            }              
+            // Wyjaśnienie
+            //function nazwapliku(sciezkaPliku) To po prostu definicja funkcji. Jako argument (sciezkaPliku) przekazujesz jej pełny tekst, np.: 'C:\Uzytkownicy\Jan\Dokumenty\raport.pdf'.
+
+            // .split(/[/\\]/) Ta część "tnie" tekst na kawałki. Używa do tego tzw. wyrażenia regularnego /[/\\]/. <- co to jest za wyrażenie???? pierwszy raz je widze na oczy
+   
+            // Przykład: Z tekstu 'C:\Foldery\plik.txt' zrobi się lista: ['C:', 'Foldery', 'plik.txt'].
+
+            // .pop() wybiera ostatni wiersz z listy/tabeli, czyli z poprzedniego przykładu będzie to 'plik.txt'
+
+            // kto to wymyśłił na egzamin?? chuj wie, musi być pojebem bo robie ten kod od 2h i sam bym tego nie wymyślił i wsm na wycinaniu plików i na tworzeniu nowych obrazów bym się poddał i wyszedł z sali. Szczerze to chuj im w dupe.
+
+
+            function dodawanie(){
+                // Variables || Zmienne 
+                const wzor = document.getElementById("wzor").value
+                // wycinam z scieżki nazwę img i przypisuję ją do stałej(const) bo czemu nie
+                const pattern = nazwapliku(wzor)
+                const color = document.getElementById("kolor").value
+                const price = document.getElementById("cena").value
+                const section = document.getElementById("sekcja")
+
+                //Alert Ilustracja 5
+                alert(`Wzór: ${pattern}, kolor ${color} w cenie ${price} zł`)
+                
+                //Tworzenie elementu (?????????)
+                let newimg = document.createElement("img")
+                newimg.src = pattern
+                newimg.alt = pattern
+                newimg.classList.add("miniatury")
+                section.appendChild(newimg)
+            }
+        </script>
+    </aside>
+    <footer>
+        <p>Autor storony: XAR</p>
+    </footer>
+</body>
+</html>
